@@ -1,6 +1,6 @@
 package edu.hboictse.group5c.Blocks;
 
-import edu.hboictse.group5c.Key;
+import edu.hboictse.group5c.Objects.Key;
 
 public class Tile extends Block{
     private Key key;
