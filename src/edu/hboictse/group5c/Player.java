@@ -2,30 +2,53 @@ package edu.hboictse.group5c;
 
 /**
  * Player Class
+ *
  * @author Yuri Lamijo
- * @version 1.0
+ * @version 0.1
  */
 
-// TODO: 2019-03-11  pickUpKey Method
-// TODO: 2019-03-11  removeKey Method
+import edu.hboictse.group5c.Objects.Key;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
-public class Player implements KeyListener {
+public class Player extends JPanel implements KeyListener {
 
     private int x;
     private int y;
 
+    private Key key;
+    private BufferedImage image;
+
     /**
      * Constructor of Player
+     *
      * @param x Integer of the Player X position
      * @param y Integer of the Player Y position
      */
     public Player(int x, int y) {
         this.x = x;
         this.y = y;
+
+        try {
+            this.image = ImageIO.read(new File("Images/Player.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
+
+//    @Override
+//    protected void paintComponent(Graphics g) {
+//        super.paintComponent(g);
+//        System.out.println(image);
+//        g.drawImage(image, 0, 0, 70,70,this);
+//    }
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -37,6 +60,11 @@ public class Player implements KeyListener {
 
     }
 
+    /**
+     * Key listener for the Player
+     *
+     * @param e KeyEvent too detect Player movement
+     */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
@@ -90,16 +118,17 @@ public class Player implements KeyListener {
         this.x--;
     }
 
-    public void pickUpKey(){
-
+    public void pickUpKey(Key key) {
+        this.key = key;
     }
 
-    public void removeKey(){
-
+    public void removeKey() {
+        // TODO: 2019-03-11  removeKey Method
     }
 
     /**
      * Returns the X position of the Player
+     *
      * @return Integer of the X position
      */
     public int getPositionX() {
@@ -108,9 +137,14 @@ public class Player implements KeyListener {
 
     /**
      * Returns the Y position of the Player
+     *
      * @return Integer of the Y position
      */
     public int getPositionY() {
         return y;
+    }
+
+    public Image getImage() {
+        return this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
     }
 }
