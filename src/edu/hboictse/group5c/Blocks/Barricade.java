@@ -4,8 +4,8 @@ public class Barricade extends Block {
     private int value;
     private boolean visible;
 
-    public Barricade(int x, int y, int value) {
-        super(x, y);
+    public Barricade(int x, int y, int width, int height, int value) {
+        super(x, y, width, height);
         this.value = value;
         this.visible = true;
     }

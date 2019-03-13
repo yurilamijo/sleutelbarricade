@@ -6,7 +6,6 @@ package edu.hboictse.group5c;
  * @author Yuri Lamijo
  * @version 0.1
  */
-
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.imageio.ImageIO;
@@ -18,7 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Player extends JPanel implements KeyListener {
+public class Player implements KeyListener {
 
     private int x;
     private int y;
