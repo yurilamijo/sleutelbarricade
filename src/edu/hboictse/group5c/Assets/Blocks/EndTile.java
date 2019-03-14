@@ -1,8 +1,20 @@
 package edu.hboictse.group5c.Assets.Blocks;
 
+import java.awt.*;
+
 public class EndTile extends Block {
 
-    public EndTile() {
+    private int SIZE;
 
+    public EndTile(int x, int y, int SIZE) {
+        super(x, y, SIZE);
+        this.SIZE = SIZE;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.GREEN);
+        g.fillRect(0, 0, SIZE, SIZE);
     }
 }
