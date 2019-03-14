@@ -1,4 +1,4 @@
-package edu.hboictse.group5c;
+package edu.hboictse.group5c.Assets;
 
 /**
  * Player Class
@@ -9,7 +9,6 @@ package edu.hboictse.group5c;
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
