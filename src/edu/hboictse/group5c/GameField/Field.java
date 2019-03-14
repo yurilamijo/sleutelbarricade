@@ -1,8 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Assets.Blocks.Block;
-import edu.hboictse.group5c.Assets.Blocks.Tile;
-import edu.hboictse.group5c.Assets.Blocks.Wall;
+import edu.hboictse.group5c.Assets.Blocks.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,52 +12,84 @@ import java.awt.*;
 public class Field extends JPanel {
 
     private static final int SIZE = 70;
-    private static final int GRID_SIZE = 1000 / 90;
+    private static final int GRID_SIZE = 900 / SIZE;
+    private static final int MIN_GRID_SIZE = 2;
 
     private Block[][] blocks = new Block[GRID_SIZE][GRID_SIZE];
 
     public Field() {
-        createBlocks();
+        createField();
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
     }
 
-    private void createBlocks() {
-        for (int x = 0; x < blocks.length; x++) {
-            for (int y = 0; y < blocks[x].length; y++) {
-                if (x == 2) {
-                    blocks[x][y] = new Wall();
-                } else {
-                    blocks[x][y] = new Tile();
-                }
-                add(blocks[x][y]);
+    private void createField() {
+        createTiles();
+        createWalls();
+        createBarricades();
+        addEndTile(new EndTile(blocks.length - 1, blocks.length - 1, SIZE));
+        addBlocks();
+    }
+
+    private void addBlocks() {
+        for (int x = 0; x < this.blocks.length; x++) {
+            for (int y = 0; y < this.blocks[x].length; y++) {
+                add(this.blocks[x][y]);
             }
         }
     }
 
-    public void addBlock(Block block) {
-        blocks[block.getY()][block.getX()] = block;
+    public void createTiles() {
+        for (int x = 0; x < this.blocks.length; x++) {
+            for (int y = 0; y < this.blocks.length; y++) {
+                if (this.blocks[x][y] == null) {
+                    this.blocks[x][y] = new Tile(x, y, SIZE);
+                }
+            }
+        }
     }
 
-    public Block getBlock(int x, int y) {
-        return blocks[y][x];
+    private void createWalls() {
+        for (int i = 0; i < 4; i++) {
+            this.addWall(new Wall(randomPosX(), randomPosY(), SIZE));
+        }
+    }
+
+    private void createBarricades() {
+        for (int i = 0; i < 12; i++) {
+            this.addBarricade(new Barricade(randomPosX(), randomPosY(), SIZE));
+        }
+    }
+
+    private void addWall(Wall wall) {
+        this.blocks[wall.getPosY()][wall.getPosX()] = wall;
+    }
+
+    private void addBarricade(Barricade barricade) {
+        this.blocks[barricade.getPosY()][barricade.getPosX()] = barricade;
+    }
+
+    private void addEndTile(EndTile endTile) {
+        this.blocks[endTile.getPosY()][endTile.getPosX()] = endTile;
+    }
+
+    public Block getWall(int x, int y) {
+        return this.blocks[y][x];
     }
 
     public void clearBlock(int x, int y) {
-        blocks[y][x] = null;
-    }
-
-    public void fillEmptyBlocks() {
-        for (int i = 0; i < blocks.length; i++) {
-            for (int j = 0; j < blocks.length; j++) {
-                if(blocks[i][j] == null) {
-                    blocks[i][j] = new Tile();
-                }
-            }
-        }
+        this.blocks[y][x] = null;
     }
 
     public Block[][] getField() {
-        fillEmptyBlocks();
+//        fillEmptyBlocks();
         return this.blocks;
+    }
+
+    private int randomPosX() {
+        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
+    }
+
+    private int randomPosY() {
+        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
     }
 }

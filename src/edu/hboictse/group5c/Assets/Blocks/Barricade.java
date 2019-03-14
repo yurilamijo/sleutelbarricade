@@ -3,35 +3,31 @@ package edu.hboictse.group5c.Assets.Blocks;
 import java.awt.*;
 
 public class Barricade extends Block {
+
+    private int SIZE;
     private int value;
     private boolean visible;
 
-    public Barricade(int value) {
-        this.value = value;
-    }
-
-    public Barricade(int x, int y, int value) {
-//        super(x, y);
-        this.value = value;
-        this.visible = true;
+    public Barricade(int x, int y, int SIZE) {
+        super(x, y, SIZE);
+        this.SIZE = SIZE;
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.RED);
-        g.fillRect(0,0,50,50);
+        g.setColor(Color.green);
+        g.fillRect(0, 0, this.SIZE, this.SIZE);
     }
 
     public int getValue() {
         return value;
     }
 
-    public boolean isVisible() {
+    public boolean isBlockVisible() {
         return visible;
     }
 
-    public void setVisible(boolean visible) {
+    public void setBlockVisible(boolean visible) {
         this.visible = visible;
     }
 }
