@@ -6,6 +6,10 @@ public class Wall extends Block {
 
     private int SIZE;
 
+    public Wall() {
+        super(0,0,70);
+    }
+
     public Wall(int x, int y, int SIZE) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
