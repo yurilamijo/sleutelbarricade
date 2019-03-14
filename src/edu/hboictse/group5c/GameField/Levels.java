@@ -1,23 +1,20 @@
 package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.Assets.Blocks.*;
+import edu.hboictse.group5c.Objects.Key;
 
 public class Levels {
     private Block[][] empty = new Block[0][0];
     private Block[][] level1 = new Block[10][10];
 
-    public Block[][] getLevel(int lvl){
-        return buildLevel(lvl);
-    }
-
-    private Block[][] buildLevel(int lvl) {
+    private Block[][] getLevel(int lvl) {
         switch (lvl) {
-//            case 1 : buildLevel1();
+            case 1 : return buildLevel1();
             default: return empty;
         }
     }
 
-//    private Field buildLevel1() {
+    private Block[][] buildLevel1() {
         /**
          * level 1 = 10x10
          *
@@ -41,18 +38,128 @@ public class Levels {
          * total of 1 End tile
          */
 
-
-
-//        level1 = new Block[][]
-//                {},
-//                {},
-//                {},
-//                {},
-//                {1,2,3,4,5,6,7,8,9,0},
-//                {1,2,3,4,5,6,7,8,9,0},
-//                {1,2,3,4,5,6,7,8,9,0},
-//                {1,2,3,4,5,6,7,8,9,0},
-//                {1,2,3,4,5,6,7,8,9,0},
-//                {1,2,3,4,5,6,7,8,9,0};
-//    }
+        level1 = new Block[][] {
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Barricade(30),
+                            new Barricade(70),
+                            new Barricade(90)
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(new Key(100)),
+                            new Tile(new Key(300)),
+                            new Tile(),
+                            new Barricade(90),
+                            new Barricade(40),
+                            new Barricade(90)
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Tile(),
+                            new Barricade(100),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Barricade(300),
+                            new Barricade(300),
+                            new Tile(new Key(100))
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Barricade(190),
+                            new Barricade(90),
+                            new Barricade(90)
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Barricade(100),
+                            new Wall(),
+                            new Wall(),
+                            new Wall(),
+                            new Barricade(220),
+                            new Barricade(100),
+                            new Barricade(50)
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Barricade(200),
+                            new Barricade(100),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Barricade(360),
+                            new Tile()
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Wall(),
+                            new Wall(),
+                            new Barricade(300),
+                            new Wall(),
+                            new Wall(),
+                            new Tile(),
+                            new Tile()
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Barricade(300),
+                            new Barricade(500),
+                            new Barricade(100),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Tile()
+                    },
+                    new Block[]{
+                            new Tile(new Key(200)),
+                            new Wall(),
+                            new Barricade(100),
+                            new Barricade(50),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Wall(),
+                            new Tile(),
+                            new Tile()
+                    },
+                    new Block[]{
+                            new Tile(),
+                            new Wall(),
+                            new Barricade(100),
+                            new Barricade(150),
+                            new Tile(),
+                            new Tile(),
+                            new Tile(),
+                            new Wall(),
+                            new Tile(),
+                            new EndTile()
+                    }
+                };
+        return level1;
+    }
 }

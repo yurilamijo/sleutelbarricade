@@ -8,7 +8,10 @@ public class Tile extends Block {
     private Key key;
 
     public Tile(){
+    }
 
+    public Tile(Key key){
+        this.key = key;
     }
 
     public Tile(int x, int y, int width, int height, Key key) {

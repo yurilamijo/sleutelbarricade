@@ -6,8 +6,8 @@ public class Barricade extends Block {
     private int value;
     private boolean visible;
 
-    public Barricade() {
-
+    public Barricade(int value) {
+        this.value = value;
     }
 
     public Barricade(int x, int y, int value) {
