@@ -1,6 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Blocks.*;
+import edu.hboictse.group5c.Assets.Blocks.*;
 
 public class Levels {
     private Block[][] empty = new Block[0][0];
@@ -12,12 +12,12 @@ public class Levels {
 
     private Block[][] buildLevel(int lvl) {
         switch (lvl) {
-            case 1 : buildLevel1();
+//            case 1 : buildLevel1();
             default: return empty;
         }
     }
 
-    private Field buildLevel1() {
+//    private Field buildLevel1() {
         /**
          * level 1 = 10x10
          *
@@ -43,16 +43,16 @@ public class Levels {
 
 
 
-        level1 = new Block[][]
-                {},
-                {},
-                {},
-                {},
-                {1,2,3,4,5,6,7,8,9,0},
-                {1,2,3,4,5,6,7,8,9,0},
-                {1,2,3,4,5,6,7,8,9,0},
-                {1,2,3,4,5,6,7,8,9,0},
-                {1,2,3,4,5,6,7,8,9,0},
-                {1,2,3,4,5,6,7,8,9,0};
-    }
+//        level1 = new Block[][]
+//                {},
+//                {},
+//                {},
+//                {},
+//                {1,2,3,4,5,6,7,8,9,0},
+//                {1,2,3,4,5,6,7,8,9,0},
+//                {1,2,3,4,5,6,7,8,9,0},
+//                {1,2,3,4,5,6,7,8,9,0},
+//                {1,2,3,4,5,6,7,8,9,0},
+//                {1,2,3,4,5,6,7,8,9,0};
+//    }
 }

@@ -12,7 +12,6 @@ public class Main {
 
     public static void main(String[] args) {
         FieldFrame frame = new FieldFrame();
-
         frame.setVisible(true);
         frame.setFocusable(true);
     }
