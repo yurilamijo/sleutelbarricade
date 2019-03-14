@@ -8,6 +8,15 @@ public class Tile extends Block {
     private int SIZE;
     private Key key;
 
+    public Tile() {
+        super(0,0,70);
+    }
+
+    public Tile(Key key) {
+        super(0,0,70);
+        this.key = key;
+    }
+
     public Tile(int x, int y, int SIZE) {
         super(x, y, SIZE);
         this.SIZE = SIZE;

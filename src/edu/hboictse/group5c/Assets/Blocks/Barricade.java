@@ -8,6 +8,11 @@ public class Barricade extends Block {
     private int value;
     private boolean visible;
 
+    public  Barricade(int value) {
+        super(0,0,70);
+        this.value = value;
+    }
+
     public Barricade(int x, int y, int SIZE) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
