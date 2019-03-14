@@ -7,6 +7,8 @@ package edu.hboictse.group5c;
  * @version 1.0
  */
 
+import edu.hboictse.group5c.Assets.Player;
+import edu.hboictse.group5c.GameField.Field;
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.swing.*;
@@ -21,8 +23,9 @@ public class FieldFrame extends JFrame {
     private JPanel optionsPanel;
     private JLabel playerImg;
     private JLabel keyImg;
+    private Field field;
 
-    private Player player = new Player(0, 0);
+    private Player player = new Player(0,0);
     private Key key = new Key(100);
 
     public FieldFrame() {
