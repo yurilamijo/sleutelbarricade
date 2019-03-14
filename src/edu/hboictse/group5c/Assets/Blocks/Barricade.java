@@ -15,8 +15,7 @@ public class Barricade extends Block {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        g.setColor(Color.yellow);
+        g.setColor(Color.green);
         g.fillRect(0, 0, this.SIZE, this.SIZE);
     }
 
@@ -24,11 +23,11 @@ public class Barricade extends Block {
         return value;
     }
 
-    public boolean isVisible() {
+    public boolean isBlockVisible() {
         return visible;
     }
 
-    public void setVisible(boolean visible) {
+    public void setBlockVisible(boolean visible) {
         this.visible = visible;
     }
 }

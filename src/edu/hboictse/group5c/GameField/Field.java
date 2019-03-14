@@ -1,10 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Assets.Blocks.Barricade;
-import edu.hboictse.group5c.Assets.Blocks.Block;
-import edu.hboictse.group5c.Assets.Blocks.Tile;
-import edu.hboictse.group5c.Assets.Blocks.Wall;
-import edu.hboictse.group5c.Assets.Player;
+import edu.hboictse.group5c.Assets.Blocks.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,19 +12,25 @@ import java.awt.*;
 public class Field extends JPanel {
 
     private static final int SIZE = 70;
-    private static final int GRID_SIZE = 1000 / 90;
+    private static final int GRID_SIZE = 900 / SIZE;
+    private static final int MIN_GRID_SIZE = 2;
 
     private Block[][] blocks = new Block[GRID_SIZE][GRID_SIZE];
 
     public Field() {
-        createTiles();
-        createWalls();
-        createBarricades();
-        createBlocks();
+        createField();
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
     }
 
-    private void createBlocks() {
+    private void createField() {
+        createTiles();
+        createWalls();
+        createBarricades();
+        addEndTile(new EndTile(blocks.length - 1, blocks.length - 1, SIZE));
+        addBlocks();
+    }
+
+    private void addBlocks() {
         for (int x = 0; x < this.blocks.length; x++) {
             for (int y = 0; y < this.blocks[x].length; y++) {
                 add(this.blocks[x][y]);
@@ -48,17 +50,13 @@ public class Field extends JPanel {
 
     private void createWalls() {
         for (int i = 0; i < 4; i++) {
-            int x = (int) (Math.random() * GRID_SIZE - 1);
-            int y = (int) (Math.random() * GRID_SIZE - 1);
-            this.addWall(new Wall(x, y, SIZE));
+            this.addWall(new Wall(randomPosX(), randomPosY(), SIZE));
         }
     }
 
     private void createBarricades() {
         for (int i = 0; i < 12; i++) {
-            int x = (int) (Math.random() * GRID_SIZE - 1);
-            int y = (int) (Math.random() * GRID_SIZE - 1);
-            this.addBarricade(new Barricade(x, y, SIZE));
+            this.addBarricade(new Barricade(randomPosX(), randomPosY(), SIZE));
         }
     }
 
@@ -68,6 +66,10 @@ public class Field extends JPanel {
 
     private void addBarricade(Barricade barricade) {
         this.blocks[barricade.getPosY()][barricade.getPosX()] = barricade;
+    }
+
+    private void addEndTile(EndTile endTile) {
+        this.blocks[endTile.getPosY()][endTile.getPosX()] = endTile;
     }
 
     public Block getWall(int x, int y) {
@@ -81,5 +83,13 @@ public class Field extends JPanel {
     public Block[][] getField() {
 //        fillEmptyBlocks();
         return this.blocks;
+    }
+
+    private int randomPosX() {
+        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
+    }
+
+    private int randomPosY() {
+        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
     }
 }

@@ -16,7 +16,6 @@ public class Tile extends Block {
 
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, this.SIZE, this.SIZE);
     }
