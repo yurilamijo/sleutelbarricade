@@ -1,6 +1,8 @@
 package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.Assets.Blocks.*;
+import edu.hboictse.group5c.Assets.Player;
+import edu.hboictse.group5c.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +17,7 @@ public class Field extends JPanel {
     private static final int GRID_SIZE = 900 / SIZE;
     private static final int MIN_GRID_SIZE = 2;
 
-    private Block[][] blocks = new Block[GRID_SIZE][GRID_SIZE];
+    private GameObject[][] objects = new GameObject[GRID_SIZE][GRID_SIZE];
 
     public Field() {
         createField();
@@ -26,70 +28,103 @@ public class Field extends JPanel {
         createTiles();
         createWalls();
         createBarricades();
-        addEndTile(new EndTile(blocks.length - 1, blocks.length - 1, SIZE));
+        addPlayer();
+        addEndTile(new EndTile(objects.length - 1, objects.length - 1, SIZE));
         addBlocks();
     }
 
+    private void addPlayer() {
+        this.objects[0][0] = new Player(0,0);
+    }
+
+    /**
+     * Adds 2D Array objects with Tiles, Walls and Barricades to the JPanel
+     */
     private void addBlocks() {
-        for (int x = 0; x < this.blocks.length; x++) {
-            for (int y = 0; y < this.blocks[x].length; y++) {
-                add(this.blocks[x][y]);
+        for (int x = 0; x < this.objects.length; x++) {
+            for (int y = 0; y < this.objects[x].length; y++) {
+                add(this.objects[x][y]);
             }
         }
     }
 
+    /**
+     * Adds Tiles to the 2D array of Blocks
+     */
     public void createTiles() {
-        for (int x = 0; x < this.blocks.length; x++) {
-            for (int y = 0; y < this.blocks.length; y++) {
-                if (this.blocks[x][y] == null) {
-                    this.blocks[x][y] = new Tile(x, y, SIZE);
+        for (int x = 0; x < this.objects.length; x++) {
+            for (int y = 0; y < this.objects.length; y++) {
+                if (this.objects[x][y] == null) {
+                    this.objects[x][y] = new Tile(x, y, SIZE);
                 }
             }
         }
     }
 
+    /**
+     * Adds Walls to the 2D array of Blocks
+     */
     private void createWalls() {
         for (int i = 0; i < 4; i++) {
-            this.addWall(new Wall(randomPosX(), randomPosY(), SIZE));
+            this.addWall(new Wall(randomPos(), randomPos(), SIZE));
         }
     }
 
+    /**
+     * Adds Barricades to the 2D array of Blocks
+     */
     private void createBarricades() {
         for (int i = 0; i < 12; i++) {
-            this.addBarricade(new Barricade(randomPosX(), randomPosY(), SIZE));
+            this.addBarricade(new Barricade(randomPos(), randomPos(), SIZE));
         }
     }
 
+    /**
+     * Helper method for adding Walls to Blocks
+     *
+     * @param wall
+     */
     private void addWall(Wall wall) {
-        this.blocks[wall.getPosY()][wall.getPosX()] = wall;
+        this.objects[wall.getPosY()][wall.getPosX()] = wall;
     }
 
+    /**
+     * Helper method for adding Barricades to Blocks
+     *
+     * @param barricade
+     */
     private void addBarricade(Barricade barricade) {
-        this.blocks[barricade.getPosY()][barricade.getPosX()] = barricade;
+        this.objects[barricade.getPosY()][barricade.getPosX()] = barricade;
     }
 
+    /**
+     * Adds EndTile to the 2D array of Blocks
+     *
+     * @param endTile
+     */
     private void addEndTile(EndTile endTile) {
-        this.blocks[endTile.getPosY()][endTile.getPosX()] = endTile;
+        this.objects[endTile.getPosY()][endTile.getPosX()] = endTile;
     }
 
-    public Block getWall(int x, int y) {
-        return this.blocks[y][x];
+    public GameObject getWall(int x, int y) {
+        return this.objects[y][x];
     }
 
     public void clearBlock(int x, int y) {
-        this.blocks[y][x] = null;
+        this.objects[y][x] = null;
     }
 
-    public Block[][] getField() {
+    public GameObject[][] getField() {
 //        fillEmptyBlocks();
-        return this.blocks;
+        return this.objects;
     }
 
-    private int randomPosX() {
-        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
-    }
-
-    private int randomPosY() {
+    /**
+     * Helper method for creating a random number
+     *
+     * @return a random Integer
+     */
+    private int randomPos() {
         return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
     }
 }

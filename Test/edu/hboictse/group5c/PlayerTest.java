@@ -11,24 +11,24 @@ public class PlayerTest {
     @Test
     public void moveUp() {
         player.moveUp();
-        assertEquals(4, player.getPositionY());
+        assertEquals(4, player.getPosY());
     }
 
     @Test
     public void moveDown() {
         player.moveDown();
-        assertEquals(2, player.getPositionY());
+        assertEquals(2, player.getPosY());
     }
 
     @Test
     public void moveRight() {
         player.moveRight();
-        assertEquals(3, player.getPositionX());
+        assertEquals(3, player.getPosX());
     }
 
     @Test
     public void moveLeft() {
         player.moveLeft();
-        assertEquals(1, player.getPositionX());
+        assertEquals(1, player.getPosX());
     }
 }
