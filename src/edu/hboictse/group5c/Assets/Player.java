@@ -6,6 +6,8 @@ package edu.hboictse.group5c.Assets;
  * @author Yuri Lamijo
  * @version 0.1
  */
+import edu.hboictse.group5c.Assets.Blocks.Barricade;
+import edu.hboictse.group5c.Assets.Blocks.Block;
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.imageio.ImageIO;
@@ -85,6 +87,41 @@ public class Player implements KeyListener {
             default:
                 System.out.println("Not a Key");
                 break;
+        }
+    }
+
+    private Boolean checkMove(int x, int y) {
+        Block targetBlock = checkBlock(x,y);
+        //if blockType = wall return false
+        //if blocktype = barricade return checkBarricade()
+        //if blocktype = tile return true
+        //if blocktype = tile with key discard inv, add key to inv and return true
+
+        return true;
+    }
+
+    private Block checkBlock(int x, int y) {
+        //getField()
+        //getBlock(x,y)
+        //return Block
+        return new Block(0,0,70);
+    }
+
+    private Boolean checkBarricade(Barricade barricade) {
+        if(checkValue(barricade) == true) {
+            //remove barricade from double array
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private Boolean checkValue(Barricade barricade) {
+        if(this.key.getCode() >= barricade.getValue()) {
+            this.key.setCode(this.key.getCode() - barricade.getValue());
+            return true;
+        } else {
+            return false;
         }
     }
 

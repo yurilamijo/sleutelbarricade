@@ -8,7 +8,6 @@ package edu.hboictse.group5c;
  */
 
 import edu.hboictse.group5c.Assets.Player;
-import edu.hboictse.group5c.GameField.Field;
 import edu.hboictse.group5c.GameField.FieldBuilder;
 import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Key;
