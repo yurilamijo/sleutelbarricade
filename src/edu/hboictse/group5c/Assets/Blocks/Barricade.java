@@ -21,7 +21,7 @@ public class Barricade extends Block {
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.green);
-        g.fillRect(0, 0, this.SIZE, this.SIZE);
+        g.fillRect(0, 0, this.getBlockSize(), this.getBlockSize());
     }
 
     public int getValue() {

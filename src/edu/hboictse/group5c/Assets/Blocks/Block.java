@@ -21,11 +21,15 @@ public class Block extends GameObject {
         return this.SIZE;
     }
 
-//    public int getPosX() {
-//        return this.x;
-//    }
-//
-//    public int getPosY() {
-//        return this.y;
-//    }
+    public void setBlockSize(int SIZE) {
+        this.SIZE = SIZE;
+    }
+
+    public void setPosX(int x) {
+        this.x = x;
+    }
+
+    public void setPosY(int y) {
+        this.y = y;
+    }
 }
