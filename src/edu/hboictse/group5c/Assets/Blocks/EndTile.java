@@ -19,6 +19,6 @@ public class EndTile extends Block {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.CYAN);
-        g.fillRect(0, 0, SIZE, SIZE);
+        g.fillRect(0, 0, this.getBlockSize(), this.getBlockSize());
     }
 }

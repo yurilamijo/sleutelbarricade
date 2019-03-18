@@ -9,6 +9,8 @@ package edu.hboictse.group5c;
 
 import edu.hboictse.group5c.Assets.Player;
 import edu.hboictse.group5c.GameField.Field;
+import edu.hboictse.group5c.GameField.FieldBuilder;
+import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.swing.*;
@@ -23,7 +25,8 @@ public class FieldFrame extends JFrame {
     private JPanel optionsPanel;
     private JLabel playerImg;
     private JLabel keyImg;
-    private Field field;
+    private FieldBuilder fieldBuilder;
+    private Levels levels;
 
     private Player player = new Player(0,0);
     private Key key = new Key(100);
@@ -43,9 +46,10 @@ public class FieldFrame extends JFrame {
 
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
-        this.field = new Field();
+        this.levels = new Levels(1);
+        this.fieldBuilder = new FieldBuilder(levels.getLevel());
 
-        this.mainPanel.add(this.field, BorderLayout.CENTER);
+        this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 
         add(this.mainPanel);
@@ -65,10 +69,4 @@ public class FieldFrame extends JFrame {
         this.keyImg = new JLabel();
         this.keyImg.setIcon(new ImageIcon(this.key.getImage()));
     }
-
-
-
-
-
-
 }

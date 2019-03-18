@@ -22,6 +22,11 @@ public class Field extends JPanel {
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
     }
 
+    public Field(Block[][] level) {
+        addLevel(level);
+        setLayout(new GridLayout(level.length,level[0].length));
+    }
+
     private void createField() {
         createTiles();
         createWalls();
@@ -34,6 +39,14 @@ public class Field extends JPanel {
         for (int x = 0; x < this.blocks.length; x++) {
             for (int y = 0; y < this.blocks[x].length; y++) {
                 add(this.blocks[x][y]);
+            }
+        }
+    }
+
+    private void addLevel(Block[][] level) {
+        for (int x = 0; x < level.length; x++) {
+            for (int y = 0; y < level[x].length; y++) {
+                add(level[x][y]);
             }
         }
     }
@@ -63,6 +76,7 @@ public class Field extends JPanel {
     private void addWall(Wall wall) {
         this.blocks[wall.getPosY()][wall.getPosX()] = wall;
     }
+
 
     private void addBarricade(Barricade barricade) {
         this.blocks[barricade.getPosY()][barricade.getPosX()] = barricade;

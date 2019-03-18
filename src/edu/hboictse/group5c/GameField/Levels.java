@@ -3,12 +3,20 @@ package edu.hboictse.group5c.GameField;
 import edu.hboictse.group5c.Assets.Blocks.*;
 import edu.hboictse.group5c.Objects.Key;
 
-public class Levels {
+import javax.swing.*;
+
+public class Levels extends JPanel {
+    private int level;
+
     private Block[][] empty = new Block[0][0];
     private Block[][] level1 = new Block[10][10];
 
-    private Block[][] getLevel(int lvl) {
-        switch (lvl) {
+    public Levels(int lvl) {
+        this.level = lvl;
+    }
+
+    public Block[][] getLevel() {
+        switch (level) {
             case 1 : return buildLevel1();
             default: return empty;
         }
