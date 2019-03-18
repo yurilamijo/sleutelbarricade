@@ -6,8 +6,7 @@ package edu.hboictse.group5c.Assets;
  * @author Yuri Lamijo
  * @version 0.1
  */
-import edu.hboictse.group5c.Assets.Blocks.Barricade;
-import edu.hboictse.group5c.Assets.Blocks.Block;
+import edu.hboictse.group5c.GameObject;
 import edu.hboictse.group5c.Objects.Key;
 
 import javax.imageio.ImageIO;
@@ -18,7 +17,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Player implements KeyListener {
+public class Player extends GameObject implements KeyListener {
 
     private int x;
     private int y;
@@ -33,17 +32,25 @@ public class Player implements KeyListener {
      * @param y Integer of the Player Y position
      */
     public Player(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x, y);
 
         try {
             this.image = ImageIO.read(new File("Images/Player.png"));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+
+        this.setImage(this.image.getScaledInstance(70, 70, Image.SCALE_FAST));
+//        this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
     }
 
-//    @Override
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.fillRect(0, 0, 70, 70);
+    }
+
+    //    @Override
 //    protected void paintComponent(Graphics g) {
 //        super.paintComponent(g);
 //        System.out.println(image);
@@ -161,25 +168,7 @@ public class Player implements KeyListener {
         // TODO: 2019-03-11  removeKey Method
     }
 
-    /**
-     * Returns the X position of the Player
-     *
-     * @return Integer of the X position
-     */
-    public int getPositionX() {
-        return x;
-    }
-
-    /**
-     * Returns the Y position of the Player
-     *
-     * @return Integer of the Y position
-     */
-    public int getPositionY() {
-        return y;
-    }
-
-    public Image getImage() {
-        return this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
-    }
+//    public Image getImage() {
+//        return this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
+//    }
 }

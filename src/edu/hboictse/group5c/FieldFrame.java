@@ -27,7 +27,7 @@ public class FieldFrame extends JFrame {
     private FieldBuilder fieldBuilder;
     private Levels levels;
 
-    private Player player = new Player(0,0);
+    private Player player = new Player(0, 0);
     private Key key = new Key(100);
 
     public FieldFrame() {
@@ -61,11 +61,11 @@ public class FieldFrame extends JFrame {
 
     private void createPlayerImg() {
         this.playerImg = new JLabel();
-        this.playerImg.setIcon(new ImageIcon(this.player.getImage()));
+        this.playerImg.setIcon(this.player.getImage());
     }
 
-    private void createKeyImg(){
+    private void createKeyImg() {
         this.keyImg = new JLabel();
-        this.keyImg.setIcon(new ImageIcon(this.key.getImage()));
+        this.keyImg.setIcon(this.key.getImage());
     }
 }
