@@ -1,4 +1,4 @@
-package edu.hboictse.group5c;
+package edu.hboictse.group5c.Objects;
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,11 +38,20 @@ public class GameObject extends JComponent {
         return this.posY;
     }
 
-    public void setImage(Image image){
-        this.image = new ImageIcon(image);
+    public void setPosX(int x) {
+        this.posX = x;
     }
 
-    public ImageIcon getImage(){
+    public void setPosY(int y) {
+        this.posY = y;
+    }
+
+    public void setImage(Image image) {
+        this.image = new ImageIcon(image);
+//        this.image = new ImageIcon("Images/Player.png");
+    }
+
+    public ImageIcon getImage() {
         return this.image;
     }
 }

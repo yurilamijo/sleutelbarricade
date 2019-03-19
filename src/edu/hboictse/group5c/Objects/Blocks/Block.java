@@ -1,8 +1,6 @@
-package edu.hboictse.group5c.Assets.Blocks;
+package edu.hboictse.group5c.Objects.Blocks;
 
-import edu.hboictse.group5c.GameObject;
-
-import javax.swing.*;
+import edu.hboictse.group5c.Objects.GameObject;
 
 public class Block extends GameObject {
 
@@ -23,13 +21,5 @@ public class Block extends GameObject {
 
     public void setBlockSize(int SIZE) {
         this.SIZE = SIZE;
-    }
-
-    public void setPosX(int x) {
-        this.x = x;
-    }
-
-    public void setPosY(int y) {
-        this.y = y;
     }
 }

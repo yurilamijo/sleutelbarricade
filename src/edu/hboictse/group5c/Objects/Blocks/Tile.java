@@ -1,4 +1,4 @@
-package edu.hboictse.group5c.Assets.Blocks;
+package edu.hboictse.group5c.Objects.Blocks;
 
 import edu.hboictse.group5c.Objects.Key;
 

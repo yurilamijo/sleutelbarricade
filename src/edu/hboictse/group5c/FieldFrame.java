@@ -7,7 +7,8 @@ package edu.hboictse.group5c;
  * @version 1.0
  */
 
-import edu.hboictse.group5c.Assets.Player;
+import edu.hboictse.group5c.Objects.Player;
+import edu.hboictse.group5c.GameField.Field;
 import edu.hboictse.group5c.GameField.FieldBuilder;
 import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Key;
@@ -25,6 +26,7 @@ public class FieldFrame extends JFrame {
     private JLabel playerImg;
     private JLabel keyImg;
     private FieldBuilder fieldBuilder;
+    private Field field;
     private Levels levels;
 
     private Player player = new Player(0, 0);
@@ -39,6 +41,7 @@ public class FieldFrame extends JFrame {
     }
 
     private void createComponents() {
+        createPlayerImg();
         createOptionsPanel();
         createMainPanel();
     }
@@ -47,7 +50,9 @@ public class FieldFrame extends JFrame {
         this.mainPanel = new JPanel(new BorderLayout());
         this.levels = new Levels(1);
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
+//        this.field = new Field();
 
+        this.mainPanel.add(this.playerImg, BorderLayout.NORTH);
         this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 

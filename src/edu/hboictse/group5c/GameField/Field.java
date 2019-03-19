@@ -1,8 +1,8 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Assets.Blocks.*;
-import edu.hboictse.group5c.Assets.Player;
-import edu.hboictse.group5c.GameObject;
+import edu.hboictse.group5c.Objects.Blocks.*;
+import edu.hboictse.group5c.Objects.Player;
+import edu.hboictse.group5c.Objects.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,7 +25,6 @@ public class Field extends JPanel {
     }
 
     public Field(Block[][] level) {
-        addLevel(level);
         setLayout(new GridLayout(level.length,level[0].length));
     }
 
@@ -56,14 +55,6 @@ public class Field extends JPanel {
     /**
      * Adds Tiles to the 2D array of Blocks
      */
-    private void addLevel(Block[][] level) {
-        for (int x = 0; x < level.length; x++) {
-            for (int y = 0; y < level[x].length; y++) {
-                add(level[x][y]);
-            }
-        }
-    }
-
     public void createTiles() {
         for (int x = 0; x < this.objects.length; x++) {
             for (int y = 0; y < this.objects.length; y++) {
@@ -79,7 +70,8 @@ public class Field extends JPanel {
      */
     private void createWalls() {
         for (int i = 0; i < 4; i++) {
-            this.addWall(new Wall(randomPos(), randomPos(), SIZE));
+            this.objects[randomPos()][randomPos()] = new Wall();
+
         }
     }
 
@@ -88,26 +80,8 @@ public class Field extends JPanel {
      */
     private void createBarricades() {
         for (int i = 0; i < 12; i++) {
-            this.addBarricade(new Barricade(randomPos(), randomPos(), SIZE));
+            this.objects[randomPos()][randomPos()] = new Barricade(100);
         }
-    }
-
-    /**
-     * Helper method for adding Walls to Blocks
-     *
-     * @param wall
-     */
-    private void addWall(Wall wall) {
-        this.objects[wall.getPosY()][wall.getPosX()] = wall;
-    }
-
-    /**
-     * Helper method for adding Barricades to Blocks
-     *
-     * @param barricade
-     */
-    private void addBarricade(Barricade barricade) {
-        this.objects[barricade.getPosY()][barricade.getPosX()] = barricade;
     }
 
     /**

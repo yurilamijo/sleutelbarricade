@@ -1,4 +1,4 @@
-package edu.hboictse.group5c.Assets;
+package edu.hboictse.group5c.Objects;
 
 /**
  * Player Class
@@ -6,8 +6,8 @@ package edu.hboictse.group5c.Assets;
  * @author Yuri Lamijo
  * @version 0.1
  */
-import edu.hboictse.group5c.GameObject;
-import edu.hboictse.group5c.Objects.Key;
+import edu.hboictse.group5c.Objects.Blocks.Barricade;
+import edu.hboictse.group5c.Objects.Blocks.Block;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -41,7 +41,7 @@ public class Player extends GameObject implements KeyListener {
         }
 
         this.setImage(this.image.getScaledInstance(70, 70, Image.SCALE_FAST));
-//        this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
+        this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
     }
 
     @Override
@@ -49,13 +49,6 @@ public class Player extends GameObject implements KeyListener {
         super.paintComponent(g);
         g.fillRect(0, 0, 70, 70);
     }
-
-    //    @Override
-//    protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        System.out.println(image);
-//        g.drawImage(image, 0, 0, 70,70,this);
-//    }
 
     @Override
     public void keyTyped(KeyEvent e) {

@@ -1,7 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Assets.Blocks.Block;
-import edu.hboictse.group5c.Assets.Blocks.Tile;
+import edu.hboictse.group5c.Objects.Blocks.Block;
 
 import javax.swing.*;
 import java.awt.*;
