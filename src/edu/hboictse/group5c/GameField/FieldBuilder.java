@@ -1,15 +1,15 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.Objects.Blocks.Block;
+import edu.hboictse.group5c.Objects.*;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class FieldBuilder extends JPanel {
 
-    private Block[][] level;
+    private GameObject[][] level;
 
-    public FieldBuilder(Block[][] level) {
+    public FieldBuilder(GameObject[][] level) {
         this.level = level;
         createField();
         setLayout(new GridLayout(level.length,level[0].length));
@@ -45,7 +45,7 @@ public class FieldBuilder extends JPanel {
         }
     }
 
-    public Block[][] getField() {
+    public GameObject[][] getField() {
         return level;
     }
 }

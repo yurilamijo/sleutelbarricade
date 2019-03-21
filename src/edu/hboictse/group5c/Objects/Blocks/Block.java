@@ -1,6 +1,7 @@
 package edu.hboictse.group5c.Objects.Blocks;
 
 import edu.hboictse.group5c.Objects.GameObject;
+import edu.hboictse.group5c.Objects.Blocks.*;
 
 public class Block extends GameObject {
 
@@ -19,7 +20,4 @@ public class Block extends GameObject {
         return this.SIZE;
     }
 
-    public void setBlockSize(int SIZE) {
-        this.SIZE = SIZE;
-    }
 }

@@ -6,8 +6,8 @@ package edu.hboictse.group5c.Objects;
  * @author Yuri Lamijo
  * @version 0.1
  */
-import edu.hboictse.group5c.Objects.Blocks.Barricade;
-import edu.hboictse.group5c.Objects.Blocks.Block;
+import edu.hboictse.group5c.GameField.Levels;
+import edu.hboictse.group5c.Objects.Blocks.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,9 +21,25 @@ public class Player extends GameObject implements KeyListener {
 
     private int x;
     private int y;
+    private Block[][] field;
 
     private Key key;
     private BufferedImage image;
+
+    public Player(int level) {
+        super(0, 0);
+        Levels levels = new Levels(level);
+        this.field = levels.getLevel();
+
+        try {
+            this.image = ImageIO.read(new File("Images/Player.png"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        this.setImage(this.image.getScaledInstance(70, 70, Image.SCALE_FAST));
+        this.image.getScaledInstance(70, 70, Image.SCALE_FAST);
+    }
 
     /**
      * Constructor of Player
@@ -31,8 +47,10 @@ public class Player extends GameObject implements KeyListener {
      * @param x Integer of the Player X position
      * @param y Integer of the Player Y position
      */
-    public Player(int x, int y) {
+    public Player(int x, int y, int level) {
         super(x, y);
+        Levels levels = new Levels(level);
+        this.field = levels.getLevel();
 
         try {
             this.image = ImageIO.read(new File("Images/Player.png"));
@@ -92,28 +110,25 @@ public class Player extends GameObject implements KeyListener {
 
     private Boolean checkMove(int x, int y) {
         Block targetBlock = checkBlock(x,y);
-        //if blockType = wall return false
-        //if blocktype = barricade return checkBarricade()
-        //if blocktype = tile return true
-        //if blocktype = tile with key discard inv, add key to inv and return true
-
-        return true;
+        if(targetBlock.getClass() == Barricade.class) {
+            return checkBarricade(targetBlock);
+        }
+        if(targetBlock.getClass() == Tile.class) {
+            return true;
+        }
+        if(targetBlock.getClass() == EndTile.class) {
+            return true;
+        }
+        return false;
     }
 
     private Block checkBlock(int x, int y) {
-        //getField()
-        //getBlock(x,y)
-        //return Block
-        return new Block(0,0,70);
+        return field[y][x];
     }
 
-    private Boolean checkBarricade(Barricade barricade) {
-        if(checkValue(barricade) == true) {
-            //remove barricade from double array
-            return true;
-        } else {
-            return false;
-        }
+    private Boolean checkBarricade(Block targetBlock) {
+        //if getValue <= ket.getCode return true else return false
+        return true;
     }
 
     private Boolean checkValue(Barricade barricade) {

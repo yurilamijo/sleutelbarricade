@@ -13,6 +13,7 @@ public class GameObject extends JComponent {
 
     private int posX;
     private int posY;
+    private int SIZE;
     private ImageIcon image;
 
     public GameObject(int x, int y) {
@@ -49,6 +50,10 @@ public class GameObject extends JComponent {
     public void setImage(Image image) {
         this.image = new ImageIcon(image);
 //        this.image = new ImageIcon("Images/Player.png");
+    }
+
+    public void setBlockSize(int SIZE) {
+        this.SIZE = SIZE;
     }
 
     public ImageIcon getImage() {
