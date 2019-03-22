@@ -38,7 +38,7 @@ public class Field extends JPanel {
     }
 
     private void addPlayer() {
-        this.objects[0][0] = new Player(0,0);
+        this.objects[0][0] = new Player(0,0,1);
     }
 
     /**

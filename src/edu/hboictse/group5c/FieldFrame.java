@@ -20,16 +20,16 @@ public class FieldFrame extends JFrame {
 
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
+    private final int lvlNum = 1;
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
     private JLabel playerImg;
     private JLabel keyImg;
     private FieldBuilder fieldBuilder;
-    private Field field;
-    private Levels levels;
+    private Levels levels = new Levels(lvlNum);
 
-    private Player player = new Player(0, 0);
+    private Player player = new Player(0, 0, lvlNum);
     private Key key = new Key(100);
 
     public FieldFrame() {
@@ -48,9 +48,7 @@ public class FieldFrame extends JFrame {
 
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
-        this.levels = new Levels(1);
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
-//        this.field = new Field();
 
         this.mainPanel.add(this.playerImg, BorderLayout.NORTH);
         this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
