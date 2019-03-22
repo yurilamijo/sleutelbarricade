@@ -6,6 +6,7 @@ package edu.hboictse.group5c.Objects;
  * @author Yuri Lamijo
  * @version 0.1
  */
+
 import edu.hboictse.group5c.Objects.Blocks.Barricade;
 import edu.hboictse.group5c.Objects.Blocks.Block;
 
@@ -62,26 +63,25 @@ public class Player extends GameObject implements KeyListener {
 
     /**
      * Key listener for the Player
-     *
      * @param e KeyEvent too detect Player movement
      */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                this.moveUp();
+                this.y++;
                 System.out.println("UP: " + "Y: " + this.y + " X: " + this.x);
                 break;
             case KeyEvent.VK_DOWN:
-                this.moveDown();
+                this.y--;
                 System.out.println("DOWN: " + "Y: " + this.y + " X: " + this.x);
                 break;
             case KeyEvent.VK_RIGHT:
-                this.moveRight();
+                this.x++;
                 System.out.println("RIGHT: " + "Y: " + this.y + " X: " + this.x);
                 break;
             case KeyEvent.VK_LEFT:
-                this.moveLeft();
+                this.x--;
                 System.out.println("LEFT: " + "Y: " + this.y + " X: " + this.x);
                 break;
             default:
@@ -123,34 +123,6 @@ public class Player extends GameObject implements KeyListener {
         } else {
             return false;
         }
-    }
-
-    /**
-     * Moves the Player UP by adding 1 to Y position
-     */
-    public void moveUp() {
-        this.y++;
-    }
-
-    /**
-     * Moves the Player DOWN by removing 1 to Y position
-     */
-    public void moveDown() {
-        this.y--;
-    }
-
-    /**
-     * Moves the Player RIGHT by adding 1 to X position
-     */
-    public void moveRight() {
-        this.x++;
-    }
-
-    /**
-     * Moves the Player LEFT by removing 1 to X position
-     */
-    public void moveLeft() {
-        this.x--;
     }
 
     public void pickUpKey(Key key) {
