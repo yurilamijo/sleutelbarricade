@@ -6,8 +6,15 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-//* van de key kan je de waarde meegeven. De key wordt in een tile opgeroepen, waardoor de image van de key in de tile komt te zitten.
+/** van de key kan je de waarde meegeven. De key wordt in een tile opgeroepen, waardoor de image van de key in de tile komt te zitten.
+ * key class of the game
+ * contructor of the key class: The key gets de     , image get implemented into the key class. (with the TRY function )
+ *
 
+ @author Alexsandy Richardson
+ @version
+
+ */
 
 
 
