@@ -3,7 +3,6 @@ package edu.hboictse.group5c.GameField;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import edu.hboictse.group5c.Objects.Player;
 import edu.hboictse.group5c.Objects.GameObject;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -17,9 +16,12 @@ public class Field extends JPanel {
     private static final int SIZE = 70;
     private static final int GRID_SIZE = 900 / SIZE;
 
+    private Player player;
     private GameObject[][] objects = new GameObject[GRID_SIZE][GRID_SIZE];
 
     public Field() {
+        this.player = new Player(0,0,1);
+
         createRandomField();
         addBlocks();
         setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
@@ -28,7 +30,7 @@ public class Field extends JPanel {
     /**
      * Adds 2D Array objects with Tiles, Walls and Barricades to the JPanel
      */
-    private void addBlocks() {
+    public void addBlocks() {
         for (int x = 0; x < this.objects.length; x++) {
             for (int y = 0; y < this.objects[x].length; y++) {
                 add(this.objects[x][y]);
@@ -40,9 +42,9 @@ public class Field extends JPanel {
     /**
      * Create random Field
      */
-    private void createRandomField() {
+    public void createRandomField() {
         buildRandomField();
-        addPlayer();
+        addPlayer(new Player(0,0,1));
         addEndTile(new EndTile(objects.length - 1, objects.length - 1, SIZE));
     }
 
@@ -75,8 +77,8 @@ public class Field extends JPanel {
     /**
      * Adds Player to 2D Array
      */
-    private void addPlayer() {
-        this.objects[0][0] = new Player(0,0,1);
+    public void addPlayer(Player player) {
+        this.objects[player.getPosY()][player.getPosX()] = player;
     }
 
     /**
@@ -84,7 +86,29 @@ public class Field extends JPanel {
      * @param endTile
      */
     private void addEndTile(EndTile endTile) {
-        this.objects[endTile.getPosY()][endTile.getPosX()] = endTile;
+        this.objects[endTile.getPosX()][endTile.getPosY()] = endTile;
+    }
+
+    public void move(String direction) {
+        int oldPosX = player.getPosX();
+        int oldPosY = player.getPosY();
+
+        switch (direction) {
+            case "NORTH":
+                player.setPosY(player.getPosY() - 1);
+                break;
+            case "SOUTH":
+                player.setPosY(player.getPosY() + 1);
+                break;
+            case "EAST":
+                player.setPosX(player.getPosX() + 1);
+                break;
+            case "WEST":
+                player.setPosX(player.getPosX() - 1);
+                break;
+        }
+        this.objects[oldPosY][oldPosX] = new Tile();
+        addPlayer(player);
     }
 
     /**

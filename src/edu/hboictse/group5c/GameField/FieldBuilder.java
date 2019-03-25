@@ -1,7 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.Objects.*;
-
 import javax.swing.*;
 import java.awt.*;
 

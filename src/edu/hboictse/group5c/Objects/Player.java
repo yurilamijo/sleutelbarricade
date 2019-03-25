@@ -1,19 +1,18 @@
 package edu.hboictse.group5c.Objects;
 
-/**
- * Player Class
- *
- * @author Yuri Lamijo
- * @version 0.1
- */
-
 import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Player extends GameObject implements KeyListener {
+/**
+ * Player Class
+ *
+ * @author Yuri Lamijo
+ * @version 0.1
+ */
+public class Player extends GameObject {
 
     private Block[][] field;
     private Key key;
@@ -38,49 +37,6 @@ public class Player extends GameObject implements KeyListener {
         this.field = levels.getLevel();
 
         super.setImage(new ImageIcon("Images/Player.png"));
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-
-    }
-
-    /**
-     * Key listener for the Player
-     *
-     * @param e KeyEvent too detect Player movement
-     */
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int x = super.getPosX();
-        int y = super.getPosY();
-
-        switch (e.getKeyCode()) {
-            case KeyEvent.VK_UP:
-                super.setPosY(y + 1);
-                System.out.println("UP: " + "Y: " + super.getPosX() + " X: " + super.getPosY());
-                break;
-            case KeyEvent.VK_DOWN:
-                super.setPosY(y - 1);
-                System.out.println("DOWN: " + "Y: " + super.getPosX() + " X: " + super.getPosY());
-                break;
-            case KeyEvent.VK_RIGHT:
-                super.setPosX(x + 1);
-                System.out.println("RIGHT: " + "Y: " + super.getPosX() + " X: " + super.getPosY());
-                break;
-            case KeyEvent.VK_LEFT:
-                super.setPosX(x - 1);
-                System.out.println("LEFT: " + "Y: " + super.getPosX() + " X: " + super.getPosY());
-                break;
-            default:
-                System.out.println("Not a Key");
-                break;
-        }
     }
 
     private Boolean checkMove(int x, int y) {

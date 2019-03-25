@@ -1,7 +1,6 @@
 package edu.hboictse.group5c.Objects;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Player Class
@@ -23,39 +22,53 @@ public class GameObject extends JLabel {
 
     /**
      * Returns the X position of the Player
-     *
      * @return Integer of the X position
      */
     public int getPosX() {
-        return this.posX;
+        return posX;
+    }
+
+    /**
+     * Sets the X position of Player
+     * @param posX Integer of the new X position
+     */
+    public void setPosX(int posX) {
+        this.posX = posX;
     }
 
     /**
      * Returns the Y position of the Player
-     *
      * @return Integer of the Y position
      */
     public int getPosY() {
-        return this.posY;
+        return posY;
     }
 
-    public void setPosX(int x) {
-        this.posX = x;
+    /**
+     * Sets the Y position of Player
+     * @param posY Integer of the new Y position
+     */
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 
-    public void setPosY(int y) {
-        this.posY = y;
-    }
-
+    /**
+     * Sets the image of GameObject
+     * @param image Image of the GameObject
+     */
     public void setImage(ImageIcon image) {
         this.image = image;
     }
 
-    public void setBlockSize(int SIZE) {
-        this.SIZE = SIZE;
-    }
-
+    /**
+     * Gets the image of the GameObject
+     * @return ImageIcon with the image of the GameObject
+     */
     public ImageIcon getImage() {
         return this.image;
+    }
+
+    public void setBlockSize(int SIZE) {
+        this.SIZE = SIZE;
     }
 }
