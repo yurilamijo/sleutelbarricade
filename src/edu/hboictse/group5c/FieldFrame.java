@@ -48,7 +48,7 @@ public class FieldFrame extends JFrame {
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
         this.field = new Field();
 
-        this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
+        this.mainPanel.add(this.field, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 
         add(this.mainPanel);
