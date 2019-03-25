@@ -24,13 +24,11 @@ public class FieldFrame extends JFrame {
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
-    private JLabel playerImg;
-    private JLabel keyImg;
+    private Field field;
     private FieldBuilder fieldBuilder;
     private Levels levels = new Levels(lvlNum);
 
     private Player player = new Player(0, 0, lvlNum);
-    private Key key = new Key(100);
 
     public FieldFrame() {
         createComponents();
@@ -41,7 +39,6 @@ public class FieldFrame extends JFrame {
     }
 
     private void createComponents() {
-        createPlayerImg();
         createOptionsPanel();
         createMainPanel();
     }
@@ -49,8 +46,8 @@ public class FieldFrame extends JFrame {
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
+        this.field = new Field();
 
-        this.mainPanel.add(this.playerImg, BorderLayout.NORTH);
         this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 
@@ -60,15 +57,5 @@ public class FieldFrame extends JFrame {
     private void createOptionsPanel() {
         this.optionsPanel = new JPanel();
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
-    }
-
-    private void createPlayerImg() {
-        this.playerImg = new JLabel();
-        this.playerImg.setIcon(this.player.getImage());
-    }
-
-    private void createKeyImg() {
-        this.keyImg = new JLabel();
-        this.keyImg.setIcon(this.key.getImage());
     }
 }

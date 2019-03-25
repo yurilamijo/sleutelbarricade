@@ -48,6 +48,7 @@ public class Field extends JPanel {
         for (int x = 0; x < this.objects.length; x++) {
             for (int y = 0; y < this.objects[x].length; y++) {
                 add(this.objects[x][y]);
+                setIcon(this.objects[x][y]);
             }
         }
     }
@@ -91,6 +92,22 @@ public class Field extends JPanel {
      */
     private void addEndTile(EndTile endTile) {
         this.objects[endTile.getPosY()][endTile.getPosX()] = endTile;
+    }
+
+    /**
+     * Sets image of GameObject
+     * @param gameObject
+     */
+    public static void setIcon(GameObject gameObject) {
+        ImageIcon icon = gameObject.getImage();
+
+        if (icon == null) {
+            gameObject.setIcon(null);
+            return;
+        }
+
+        Image image = icon.getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+        gameObject.setIcon(new ImageIcon(image));
     }
 
     public GameObject getWall(int x, int y) {

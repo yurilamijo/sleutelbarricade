@@ -9,7 +9,7 @@ import java.awt.*;
  * @author Yuri Lamijo
  * @version 0.1
  */
-public class GameObject extends JComponent {
+public class GameObject extends JLabel {
 
     private int posX;
     private int posY;
@@ -47,9 +47,8 @@ public class GameObject extends JComponent {
         this.posY = y;
     }
 
-    public void setImage(Image image) {
-        this.image = new ImageIcon(image);
-//        this.image = new ImageIcon("Images/Player.png");
+    public void setImage(ImageIcon image) {
+        this.image = image;
     }
 
     public void setBlockSize(int SIZE) {
