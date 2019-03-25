@@ -7,7 +7,7 @@ package edu.hboictse.group5c;
  * @version 1.0
  */
 
-import edu.hboictse.group5c.Assets.Player;
+import edu.hboictse.group5c.Objects.Player;
 import edu.hboictse.group5c.GameField.Field;
 import edu.hboictse.group5c.GameField.FieldBuilder;
 import edu.hboictse.group5c.GameField.Levels;
@@ -20,16 +20,15 @@ public class FieldFrame extends JFrame {
 
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
+    private final int lvlNum = 1;
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
-    private JLabel playerImg;
-    private JLabel keyImg;
+    private Field field;
     private FieldBuilder fieldBuilder;
-    private Levels levels;
+    private Levels levels = new Levels(lvlNum);
 
-    private Player player = new Player(0,0);
-    private Key key = new Key(100);
+    private Player player = new Player(0, 0, lvlNum);
 
     public FieldFrame() {
         createComponents();
@@ -46,8 +45,8 @@ public class FieldFrame extends JFrame {
 
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
-        this.levels = new Levels(1);
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
+        this.field = new Field();
 
         this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
@@ -58,15 +57,5 @@ public class FieldFrame extends JFrame {
     private void createOptionsPanel() {
         this.optionsPanel = new JPanel();
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
-    }
-
-    private void createPlayerImg() {
-        this.playerImg = new JLabel();
-        this.playerImg.setIcon(new ImageIcon(this.player.getImage()));
-    }
-
-    private void createKeyImg(){
-        this.keyImg = new JLabel();
-        this.keyImg.setIcon(new ImageIcon(this.key.getImage()));
     }
 }
