@@ -1,7 +1,7 @@
 package edu.hboictse.group5c.Objects.Blocks;
 
 import edu.hboictse.group5c.Objects.Key;
-
+import javax.swing.*;
 import java.awt.*;
 
 public class Tile extends Block {
@@ -10,11 +10,13 @@ public class Tile extends Block {
 
     public Tile() {
         super(0,0,70);
+        super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     public Tile(Key key) {
         super(0,0,70);
         this.key = key;
+        super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     public Tile(int x, int y, int SIZE) {
@@ -32,6 +34,7 @@ public class Tile extends Block {
     protected void paintComponent(Graphics g) {
         g.setColor(Color.GRAY);
         g.fillRect(0, 0, this.getBlockSize(), this.getBlockSize());
+        super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     public Key getKey() {

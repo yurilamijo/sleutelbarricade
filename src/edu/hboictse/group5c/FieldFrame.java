@@ -15,8 +15,10 @@ import edu.hboictse.group5c.Objects.Key;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class FieldFrame extends JFrame {
+public class FieldFrame extends JFrame implements KeyListener {
 
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
@@ -24,24 +26,20 @@ public class FieldFrame extends JFrame {
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
-    private JLabel playerImg;
-    private JLabel keyImg;
+    private Field field;
     private FieldBuilder fieldBuilder;
     private Levels levels = new Levels(lvlNum);
-
-    private Player player = new Player(0, 0, lvlNum);
-    private Key key = new Key(100);
 
     public FieldFrame() {
         createComponents();
         setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setTitle("Sleutel barricade");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-//        addKeyListener(this.player);
+        setFocusable(true);
+        addKeyListener(this);
     }
 
     private void createComponents() {
-        createPlayerImg();
         createOptionsPanel();
         createMainPanel();
     }
@@ -49,9 +47,9 @@ public class FieldFrame extends JFrame {
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
+        this.field = new Field();
 
-        this.mainPanel.add(this.playerImg, BorderLayout.NORTH);
-        this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
+        this.mainPanel.add(this.field, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 
         add(this.mainPanel);
@@ -62,13 +60,44 @@ public class FieldFrame extends JFrame {
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
     }
 
-    private void createPlayerImg() {
-        this.playerImg = new JLabel();
-        this.playerImg.setIcon(this.player.getImage());
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 
-    private void createKeyImg() {
-        this.keyImg = new JLabel();
-        this.keyImg.setIcon(this.key.getImage());
+    /**
+     * Key listener for the Player
+     *
+     * @param e KeyEvent too detect Player movement
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                field.move("NORTH");
+                break;
+            case KeyEvent.VK_DOWN:
+                field.move("SOUTH" );
+                break;
+            case KeyEvent.VK_RIGHT:
+                field.move("EAST");
+                break;
+            case KeyEvent.VK_LEFT:
+                field.move("WEST");
+                break;
+            default:
+                System.out.println("Not a Key");
+                break;
+        }
+
+        field.removeAll();
+        field.addBlocks();
+        field.revalidate();
+        field.repaint();
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

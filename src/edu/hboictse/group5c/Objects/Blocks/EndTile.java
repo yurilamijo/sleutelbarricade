@@ -1,18 +1,18 @@
 package edu.hboictse.group5c.Objects.Blocks;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class EndTile extends Block {
 
-    private int SIZE;
-
    public EndTile() {
        super(0,0,70);
+       super.setImage(new ImageIcon("Images/EndTile.png"));
    }
 
     public EndTile(int x, int y, int SIZE) {
         super(x, y, SIZE);
-        this.SIZE = SIZE;
+        super.setImage(new ImageIcon("Images/EndTile.png"));
     }
 
     @Override

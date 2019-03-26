@@ -3,9 +3,9 @@ package edu.hboictse.group5c.GameField;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import edu.hboictse.group5c.Objects.Player;
 import edu.hboictse.group5c.Objects.GameObject;
-
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 /**
  * @author Yuri Lamijo
@@ -15,47 +15,46 @@ public class Field extends JPanel {
 
     private static final int SIZE = 70;
     private static final int GRID_SIZE = 900 / SIZE;
-    private static final int MIN_GRID_SIZE = 2;
 
+    private Player player;
     private GameObject[][] objects = new GameObject[GRID_SIZE][GRID_SIZE];
 
     public Field() {
-        createField();
-        setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
-    }
+        this.player = new Player(0,0,1);
 
-    public Field(Block[][] level) {
-        setLayout(new GridLayout(level.length,level[0].length));
-    }
-
-    private void createField() {
-        createTiles();
-        createWalls();
-        createBarricades();
-        addPlayer();
-        addEndTile(new EndTile(objects.length - 1, objects.length - 1, SIZE));
+        createRandomField();
         addBlocks();
-    }
-
-    private void addPlayer() {
-        this.objects[0][0] = new Player(0,0,1);
+        setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
     }
 
     /**
      * Adds 2D Array objects with Tiles, Walls and Barricades to the JPanel
      */
-    private void addBlocks() {
+    public void addBlocks() {
         for (int x = 0; x < this.objects.length; x++) {
             for (int y = 0; y < this.objects[x].length; y++) {
                 add(this.objects[x][y]);
+                setIcon(this.objects[x][y]);
             }
         }
     }
 
     /**
-     * Adds Tiles to the 2D array of Blocks
+     * Create random Field
      */
-    public void createTiles() {
+    public void createRandomField() {
+        buildRandomField();
+        addPlayer(new Player(0,0,1));
+        addEndTile(new EndTile(objects.length - 1, objects.length - 1, SIZE));
+    }
+
+    /**
+     * Builds the game field with Tiles, Wall and Barricades
+     */
+    private void buildRandomField(){
+        Random rand = new Random();
+
+        //  Adds Tiles to 2D Array
         for (int x = 0; x < this.objects.length; x++) {
             for (int y = 0; y < this.objects.length; y++) {
                 if (this.objects[x][y] == null) {
@@ -63,55 +62,65 @@ public class Field extends JPanel {
                 }
             }
         }
-    }
 
-    /**
-     * Adds Walls to the 2D array of Blocks
-     */
-    private void createWalls() {
+        //  Adds Walls to 2D Array
         for (int i = 0; i < 4; i++) {
-            this.objects[randomPos()][randomPos()] = new Wall();
+            this.objects[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Wall();
+        }
 
+        //  Adds Barricades to 2D Array
+        for (int i = 0; i < 12; i++) {
+            this.objects[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(100);
         }
     }
 
     /**
-     * Adds Barricades to the 2D array of Blocks
+     * Adds Player to 2D Array
      */
-    private void createBarricades() {
-        for (int i = 0; i < 12; i++) {
-            this.objects[randomPos()][randomPos()] = new Barricade(100);
-        }
+    public void addPlayer(Player player) {
+        this.objects[player.getPosY()][player.getPosX()] = player;
     }
 
     /**
      * Adds EndTile to the 2D array of Blocks
-     *
      * @param endTile
      */
     private void addEndTile(EndTile endTile) {
-        this.objects[endTile.getPosY()][endTile.getPosX()] = endTile;
+        this.objects[endTile.getPosX()][endTile.getPosY()] = endTile;
     }
 
-    public GameObject getWall(int x, int y) {
-        return this.objects[y][x];
-    }
+    public void move(String direction) {
+        int oldPosX = player.getPosX();
+        int oldPosY = player.getPosY();
 
-    public void clearBlock(int x, int y) {
-        this.objects[y][x] = null;
-    }
-
-    public GameObject[][] getField() {
-//        fillEmptyBlocks();
-        return this.objects;
+        switch (direction) {
+            case "NORTH":
+                player.setPosY(player.getPosY() - 1);
+                break;
+            case "SOUTH":
+                player.setPosY(player.getPosY() + 1);
+                break;
+            case "EAST":
+                player.setPosX(player.getPosX() + 1);
+                break;
+            case "WEST":
+                player.setPosX(player.getPosX() - 1);
+                break;
+        }
+        this.objects[oldPosY][oldPosX] = new Tile();
+        addPlayer(player);
     }
 
     /**
-     * Helper method for creating a random number
-     *
-     * @return a random Integer
+     * Sets image of GameObject
+     * @param gameObject
      */
-    private int randomPos() {
-        return (int) (Math.random() * ((GRID_SIZE) - MIN_GRID_SIZE) + 2) - MIN_GRID_SIZE;
+    public static void setIcon(GameObject gameObject) {
+        if (gameObject.getImage() == null) {
+            gameObject.setIcon(null);
+            return;
+        }
+        Image image = gameObject.getImage().getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
+        gameObject.setIcon(new ImageIcon(image));
     }
 }
