@@ -17,6 +17,12 @@ public class Barricade extends Block {
         this.SIZE = SIZE;
     }
 
+    public Barricade(int x, int y, int SIZE, int value) {
+        super(x, y, SIZE);
+        this.SIZE = SIZE;
+        this.value = value;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.green);

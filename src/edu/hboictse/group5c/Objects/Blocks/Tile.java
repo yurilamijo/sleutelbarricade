@@ -22,6 +22,12 @@ public class Tile extends Block {
         this.SIZE = SIZE;
     }
 
+    public Tile(int x,int y, int SIZE, Key key) {
+        super(x, y, SIZE);
+        this.SIZE = SIZE;
+        this.key = key;
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.GRAY);
