@@ -1,8 +1,9 @@
 package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.Objects.Blocks.*;
+import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
-import edu.hboictse.group5c.Objects.GameObject;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
@@ -17,10 +18,10 @@ public class Field extends JPanel {
     private static final int GRID_SIZE = 900 / SIZE;
 
     private Player player;
-    private GameObject[][] objects = new GameObject[GRID_SIZE][GRID_SIZE];
+    private Block[][] blocks = new Block[GRID_SIZE][GRID_SIZE];
 
     public Field() {
-        this.player = new Player(0,0,1);
+        this.player = new Player(0, 0, 1);
 
         createRandomField();
         addBlocks();
@@ -31,10 +32,10 @@ public class Field extends JPanel {
      * Adds 2D Array objects with Tiles, Walls and Barricades to the JPanel
      */
     public void addBlocks() {
-        for (int x = 0; x < this.objects.length; x++) {
-            for (int y = 0; y < this.objects[x].length; y++) {
-                add(this.objects[x][y]);
-                setIcon(this.objects[x][y]);
+        for (Block[] blocks : this.blocks) {
+            for (Block block : blocks) {
+                add(block);
+                setIcon(block);
             }
         }
     }
@@ -44,33 +45,35 @@ public class Field extends JPanel {
      */
     public void createRandomField() {
         buildRandomField();
-        addPlayer(new Player(0,0,1));
-        addEndTile(new EndTile(objects.length - 1, objects.length - 1, SIZE));
+        addPlayer(new Player(0, 0, 1));
+        addEndTile(new EndTile(blocks.length - 1, blocks.length - 1));
     }
 
     /**
      * Builds the game field with Tiles, Wall and Barricades
      */
-    private void buildRandomField(){
+    private void buildRandomField() {
         Random rand = new Random();
 
         //  Adds Tiles to 2D Array
-        for (int x = 0; x < this.objects.length; x++) {
-            for (int y = 0; y < this.objects.length; y++) {
-                if (this.objects[x][y] == null) {
-                    this.objects[x][y] = new Tile(x, y, SIZE);
-                }
+        for (int y = 0; y < blocks.length; y++) {
+            for (int x = 0; x < blocks[y].length; x++) {
+                this.blocks[y][x] = new Tile();
             }
         }
 
         //  Adds Walls to 2D Array
         for (int i = 0; i < 4; i++) {
-            this.objects[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Wall();
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Wall();
         }
 
         //  Adds Barricades to 2D Array
         for (int i = 0; i < 12; i++) {
-            this.objects[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(100);
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(100);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)].setGameObject(new Key(100));
         }
     }
 
@@ -78,49 +81,83 @@ public class Field extends JPanel {
      * Adds Player to 2D Array
      */
     public void addPlayer(Player player) {
-        this.objects[player.getPosY()][player.getPosX()] = player;
+        this.blocks[player.getPosY()][player.getPosX()].setGameObject(player);
     }
 
     /**
      * Adds EndTile to the 2D array of Blocks
+     *
      * @param endTile
      */
     private void addEndTile(EndTile endTile) {
-        this.objects[endTile.getPosX()][endTile.getPosY()] = endTile;
+        this.blocks[endTile.getPosX()][endTile.getPosY()] = endTile;
     }
 
-    public void move(String direction) {
+    public void movePlayer(String direction) {
+        final int speed = 1;
+        int nextPos = 0;
         int oldPosX = player.getPosX();
         int oldPosY = player.getPosY();
+        Block nextBlock = null;
 
         switch (direction) {
             case "NORTH":
-                player.setPosY(player.getPosY() - 1);
+                nextPos = player.getPosY() - speed;
+                nextBlock = blocks[nextPos][player.getPosX()];
+                if (player.checkMove(nextBlock)) {
+                    player.setPosY(nextPos);
+                }
                 break;
             case "SOUTH":
-                player.setPosY(player.getPosY() + 1);
+                nextPos = player.getPosY() + speed;
+                nextBlock = blocks[nextPos][player.getPosX()];
+                if (player.checkMove(nextBlock)) {
+                    player.setPosY(nextPos);
+                }
                 break;
             case "EAST":
-                player.setPosX(player.getPosX() + 1);
+                nextPos = player.getPosX() + speed;
+                nextBlock = blocks[player.getPosY()][nextPos];
+                if (player.checkMove(nextBlock)) {
+                    player.setPosX(nextPos);
+                }
                 break;
             case "WEST":
-                player.setPosX(player.getPosX() - 1);
+                nextPos = player.getPosX() - speed;
+                nextBlock = blocks[player.getPosY()][nextPos];
+                if (player.checkMove(nextBlock)) {
+                    player.setPosX(nextPos);
+                }
                 break;
         }
-        this.objects[oldPosY][oldPosX] = new Tile();
-        addPlayer(player);
+
+        this.blocks[oldPosY][oldPosX] = new Tile();
+        this.addPlayer(player);
+
+        this.updateField();
     }
 
-    /**
-     * Sets image of GameObject
-     * @param gameObject
-     */
-    public static void setIcon(GameObject gameObject) {
-        if (gameObject.getImage() == null) {
-            gameObject.setIcon(null);
+    private void updateField() {
+        this.removeAll();
+        this.addBlocks();
+        this.revalidate();
+        this.repaint();
+    }
+
+    public static void setIcon(Block block) {
+        final int imageSize = 70;
+        Image image;
+
+        if (block.getImage() == null) {
+            block.setIcon(null);
             return;
         }
-        Image image = gameObject.getImage().getImage().getScaledInstance(70, 70, java.awt.Image.SCALE_SMOOTH);
-        gameObject.setIcon(new ImageIcon(image));
+
+        if (block.hasGameObject()) {
+            image = block.getGameObject().getImage().getImage().getScaledInstance(imageSize, imageSize, java.awt.Image.SCALE_SMOOTH);
+        } else {
+            image = block.getImage().getImage().getScaledInstance(imageSize, imageSize, java.awt.Image.SCALE_SMOOTH);
+        }
+        block.setIcon(new ImageIcon(image));
     }
 }

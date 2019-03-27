@@ -74,26 +74,21 @@ public class FieldFrame extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_UP:
-                field.move("NORTH");
+                field.movePlayer("NORTH");
                 break;
             case KeyEvent.VK_DOWN:
-                field.move("SOUTH" );
+                field.movePlayer("SOUTH" );
                 break;
             case KeyEvent.VK_RIGHT:
-                field.move("EAST");
+                field.movePlayer("EAST");
                 break;
             case KeyEvent.VK_LEFT:
-                field.move("WEST");
+                field.movePlayer("WEST");
                 break;
             default:
                 System.out.println("Not a Key");
                 break;
         }
-
-        field.removeAll();
-        field.addBlocks();
-        field.revalidate();
-        field.repaint();
     }
 
     @Override

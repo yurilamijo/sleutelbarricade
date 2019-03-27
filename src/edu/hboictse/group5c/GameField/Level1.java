@@ -36,7 +36,7 @@ public class Level1 {
         this.tiles = buildTiles();
         this. walls = buildWalls();
         this.barricades = buildBarricades();
-        this.endTile = new EndTile(9,9,70);
+        this.endTile = new EndTile(9,9);
     }
 
     public String getObjectType(int x, int y) {
@@ -64,7 +64,7 @@ public class Level1 {
                 return tiles[i];
             }
         }
-        return new Tile(0,0,70);
+        return new Tile(0,0);
     }
 
     public Wall getWall(int x, int y) {
@@ -73,145 +73,145 @@ public class Level1 {
                 return walls[i];
             }
         }
-        return new Wall(0,0,70);
+        return new Wall(0,0);
     }
 
     private Tile[] buildTiles() {
         return new Tile[] {
-                new Tile(0,0,70),
-                new Tile(3,0,70),
-                new Tile(4,0,70),
-                new Tile(5,0,70),
-                new Tile(6,0,70),
+                new Tile(0,0),
+                new Tile(3,0),
+                new Tile(4,0),
+                new Tile(5,0),
+                new Tile(6,0),
 
-                new Tile(0,1,70),
-                new Tile(1,1,70),
-                new Tile(2,1,70),
-                new Tile(3,1,70),
-                new Tile(4,1,70, new Key(100)),
-                new Tile(5,1,70, new Key(300)),
-                new Tile(6,1,70),
+                new Tile(0,1),
+                new Tile(1,1),
+                new Tile(2,1),
+                new Tile(3,1),
+                new Tile(4,1, new Key(100)),
+                new Tile(5,1, new Key(300)),
+                new Tile(6,1),
 
-                new Tile(0,2,70),
-                new Tile(1,2,70),
-                new Tile(3,2,70),
-                new Tile(4,2,70),
-                new Tile(5,2,70),
-                new Tile(6,2,70),
-                new Tile(9,2,70,new Key(100)),
+                new Tile(0,2),
+                new Tile(1,2),
+                new Tile(3,2),
+                new Tile(4,2),
+                new Tile(5,2),
+                new Tile(6,2),
+                new Tile(9,2,new Key(100)),
 
-                new Tile(0,3,70),
-                new Tile(3,3,70),
-                new Tile(4,3,70),
-                new Tile(5,3,70),
-                new Tile(6,3,70),
+                new Tile(0,3),
+                new Tile(3,3),
+                new Tile(4,3),
+                new Tile(5,3),
+                new Tile(6,3),
 
-                new Tile(0,4,70),
+                new Tile(0,4),
 
-                new Tile(0,5,70),
-                new Tile(3,5,70),
-                new Tile(4,5,70),
-                new Tile(5,5,70),
-                new Tile(9,5,70),
+                new Tile(0,5),
+                new Tile(3,5),
+                new Tile(4,5),
+                new Tile(5,5),
+                new Tile(9,5),
 
-                new Tile(0,6,70),
-                new Tile(8,6,70),
-                new Tile(9,6,70),
+                new Tile(0,6),
+                new Tile(8,6),
+                new Tile(9,6),
 
-                new Tile(0,7,70),
-                new Tile(6,7,70),
-                new Tile(7,7,70),
-                new Tile(8,7,70),
-                new Tile(9,7,70),
+                new Tile(0,7),
+                new Tile(6,7),
+                new Tile(7,7),
+                new Tile(8,7),
+                new Tile(9,7),
 
-                new Tile(0,8,70,new Key(200)),
-                new Tile(4,8,70),
-                new Tile(5,8,70),
-                new Tile(6,8,70),
-                new Tile(8,8,70),
-                new Tile(9,8,70),
+                new Tile(0,8,new Key(200)),
+                new Tile(4,8),
+                new Tile(5,8),
+                new Tile(6,8),
+                new Tile(8,8),
+                new Tile(9,8),
 
-                new Tile(0,9,70),
-                new Tile(4,9,70),
-                new Tile(5,9,70),
-                new Tile(6,9,70),
-                new Tile(8,9,70)
+                new Tile(0,9),
+                new Tile(4,9),
+                new Tile(5,9),
+                new Tile(6,9),
+                new Tile(8,9)
         };
     }
 
     private Wall[] buildWalls() {
         return new Wall[]{
-                new Wall(1,0,70),
+                new Wall(1,0),
 
-                new Wall(1,3,70),
+                new Wall(1,3),
 
-                new Wall(1,4,70),
-                new Wall(4,4,70),
-                new Wall(5,4,70),
-                new Wall(6,4,70),
+                new Wall(1,4),
+                new Wall(4,4),
+                new Wall(5,4),
+                new Wall(6,4),
 
-                new Wall(6,5,70),
+                new Wall(6,5),
 
-                new Wall(1,6,70),
-                new Wall(3,6,70),
-                new Wall(4,6,70),
-                new Wall(6,6,70),
-                new Wall(7,6,70),
+                new Wall(1,6),
+                new Wall(3,6),
+                new Wall(4,6),
+                new Wall(6,6),
+                new Wall(7,6),
 
-                new Wall(1,7,70),
+                new Wall(1,7),
 
-                new Wall(1,8,70),
-                new Wall(7,8,70),
+                new Wall(1,8),
+                new Wall(7,8),
 
-                new Wall(1,9,70),
-                new Wall(7,9,70)
+                new Wall(1,9),
+                new Wall(7,9)
         };
     }
 
     private Barricade[] buildBarricades() {
         return new Barricade[]{
-                new Barricade(2,0,70,100),
-                new Barricade(7,0,70,30),
-                new Barricade(8,0,70,70),
-                new Barricade(9,0,70,90),
+                new Barricade(2,0,100),
+                new Barricade(7,0,30),
+                new Barricade(8,0,70),
+                new Barricade(9,0,90),
 
-                new Barricade(7,1,70,90),
-                new Barricade(8,1,70,40),
-                new Barricade(9,1,70,90),
+                new Barricade(7,1,90),
+                new Barricade(8,1,40),
+                new Barricade(9,1,90),
 
-                new Barricade(2,2,70,100),
-                new Barricade(7,2,70,300),
-                new Barricade(8,2,70,300),
+                new Barricade(2,2,100),
+                new Barricade(7,2,300),
+                new Barricade(8,2,300),
 
-                new Barricade(2,3,70,100),
-                new Barricade(7,3,70,190),
-                new Barricade(8,3,70,90),
-                new Barricade(9,3,70,90),
+                new Barricade(2,3,100),
+                new Barricade(7,3,190),
+                new Barricade(8,3,90),
+                new Barricade(9,3,90),
 
-                new Barricade(2,4,70,100),
-                new Barricade(3,4,70,100),
-                new Barricade(7,4,70,220),
-                new Barricade(8,4,70,100),
-                new Barricade(9,4,70,50),
+                new Barricade(2,4,100),
+                new Barricade(3,4,100),
+                new Barricade(7,4,220),
+                new Barricade(8,4,100),
+                new Barricade(9,4,50),
 
-                new Barricade(1,5,70,200),
-                new Barricade(2,5,70,100),
-                new Barricade(7,5,70,100),
-                new Barricade(8,5,70,360),
+                new Barricade(1,5,200),
+                new Barricade(2,5,100),
+                new Barricade(7,5,100),
+                new Barricade(8,5,360),
 
-                new Barricade(2,6,70,100),
-                new Barricade(5,6,70,300),
+                new Barricade(2,6,100),
+                new Barricade(5,6,300),
 
-                new Barricade(2,7,70,100),
-                new Barricade(3,7,70,300),
-                new Barricade(4,7,70,500),
-                new Barricade(5,7,70,100),
+                new Barricade(2,7,100),
+                new Barricade(3,7,300),
+                new Barricade(4,7,500),
+                new Barricade(5,7,100),
 
-                new Barricade(2,8,70,100),
-                new Barricade(3,8,70,50),
+                new Barricade(2,8,100),
+                new Barricade(3,8,50),
 
-                new Barricade(2,9,70,100),
-                new Barricade(3,9,70,150)
+                new Barricade(2,9,100),
+                new Barricade(3,9,150)
         };
     }
 }

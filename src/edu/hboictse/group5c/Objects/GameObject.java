@@ -12,7 +12,6 @@ public class GameObject extends JLabel {
 
     private int posX;
     private int posY;
-    private int SIZE;
     private ImageIcon image;
 
     public GameObject(int x, int y) {
@@ -66,9 +65,5 @@ public class GameObject extends JLabel {
      */
     public ImageIcon getImage() {
         return this.image;
-    }
-
-    public void setBlockSize(int SIZE) {
-        this.SIZE = SIZE;
     }
 }
