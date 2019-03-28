@@ -10,12 +10,12 @@ public class Barricade extends Block {
     public  Barricade(int value) {
         super(0,0,70);
         this.value = value;
-        super.setImage(new ImageIcon("Images/Barricade.png"));
+        super.setImage(new ImageIcon("Images/Brickwall300.png"));
     }
 
     public Barricade(int x, int y, int SIZE) {
         super(x, y, SIZE);
-        super.setImage(new ImageIcon("Images/Barricade.png"));
+        super.setImage(new ImageIcon("Images/Brickwall300.png"));
     }
 
     public int getValue() {
