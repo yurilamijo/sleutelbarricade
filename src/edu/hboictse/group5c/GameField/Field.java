@@ -41,7 +41,7 @@ public class Field extends JPanel {
     }
 
     /**
-     * Create random Field
+     * Creates random Field
      */
     public void createRandomField() {
         buildRandomField();

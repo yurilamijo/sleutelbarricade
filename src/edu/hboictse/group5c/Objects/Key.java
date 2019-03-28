@@ -23,13 +23,13 @@ public class Key extends GameObject {
     private void setKeyImage() {
         switch (this.code) {
             case 100:
-                super.setImage(new ImageIcon("Images/Key100.png"));
+                super.setImage(new ImageIcon("Images/Key_100.png"));
                 break;
             case 200:
-                super.setImage(new ImageIcon("Images/Key200.png"));
+                super.setImage(new ImageIcon("Images/Key_200.png"));
                 break;
             case 300:
-                super.setImage(new ImageIcon("Images/Key300.png"));
+                super.setImage(new ImageIcon("Images/Key_300.png"));
                 break;
             default:
                 System.out.println("Image is NULL -> ERROR !!!");

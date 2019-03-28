@@ -27,13 +27,13 @@ public class Barricade extends Block {
         System.out.println(this.code);
         switch (this.code) {
             case 100:
-                super.setImage(new ImageIcon("Images/Barricade100.png"));
+                super.setImage(new ImageIcon("Images/Barricade_100.png"));
                 break;
             case 200:
-                super.setImage(new ImageIcon("Images/Barricade200.png"));
+                super.setImage(new ImageIcon("Images/Barricade_200.png"));
                 break;
             case 300:
-                super.setImage(new ImageIcon("Images/Barricade300.png"));
+                super.setImage(new ImageIcon("Images/Barricade_300.png"));
                 break;
             default:
                 break;
