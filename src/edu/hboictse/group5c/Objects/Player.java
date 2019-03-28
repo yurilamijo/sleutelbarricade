@@ -2,10 +2,7 @@ package edu.hboictse.group5c.Objects;
 
 import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Blocks.*;
-
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Player Class
@@ -40,6 +37,11 @@ public class Player extends GameObject {
         super.setImage(new ImageIcon("Images/Player.png"));
     }
 
+    /**
+     * Checks if Player will collide with a Tile, Barricade or Wall
+     * @param nextBlock Block that is possible the nextBlock
+     * @return A boolean if Player move is valid
+     */
     public boolean checkMove(Block nextBlock) {
         if (nextBlock instanceof Barricade) {
             System.out.println("Barricade");
@@ -58,6 +60,11 @@ public class Player extends GameObject {
         return false;
     }
 
+    /**
+     * Checks if the Key code and the Barricade code is the same
+     * @param barricadeCode Integer of the barricade code
+     * @return A boolean if Code of Key and Barricade is the same
+     */
     public boolean checkBarricadeValue(int barricadeCode) {
         if (this.key == null) {
             System.out.println("NO KEY");
@@ -73,6 +80,10 @@ public class Player extends GameObject {
         }
     }
 
+    /**
+     * Adds a Key to the Player pocket
+     * @param key Key that the player picked up
+     */
     public void pickUpKey(Key key) {
         this.key = key;
     }

@@ -2,30 +2,46 @@ package edu.hboictse.group5c.Objects;
 
 import javax.swing.*;
 
-/** 
+/**
  * van de key kan je de waarde meegeven. De key wordt in een tile opgeroepen, waardoor de image van de key in de tile komt te zitten.
  * key class of the game
  * contructor of the key class: The key gets de     , image get implemented into the key class. (with the TRY function )
+ *
  * @author Alexsandy Richardson
- * @version
  */
 
 public class Key extends GameObject {
 
-   private int Code;
+    private int code;
 
-    public Key(int Code){
-        super(0,0);
-        this.Code = Code;
-
-        super.setImage(new ImageIcon("Images/Key.png"));
+    public Key(int code) {
+        super(0, 0);
+        this.code = code;
+        this.setKeyImage();
     }
 
-    public int getCode(){
-        return Code;
- }
+    private void setKeyImage() {
+        switch (this.code) {
+            case 100:
+                super.setImage(new ImageIcon("Images/Key100.png"));
+                break;
+            case 200:
+                super.setImage(new ImageIcon("Images/Key200.png"));
+                break;
+            case 300:
+                super.setImage(new ImageIcon("Images/Key300.png"));
+                break;
+            default:
+                System.out.println("Image is NULL -> ERROR !!!");
+                break;
+        }
+    }
 
-    public void setCode(int Code){
-    this.Code = Code ;
- }
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
+    }
 }
