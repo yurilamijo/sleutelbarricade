@@ -1,24 +1,29 @@
 package edu.hboictse.group5c.Objects.Blocks;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class Barricade extends Block {
 
-    private int value;
+    private int code;
 
-    public  Barricade(int value) {
-        super(0,0,70);
-        this.value = value;
-        super.setImage(new ImageIcon("Images/Brickwall300.png"));
+    public  Barricade(int code) {
+        super(0,0);
+        this.code = code;
+        super.setImage(new ImageIcon("Images/Barricade.png"));
     }
 
-    public Barricade(int x, int y, int SIZE) {
-        super(x, y, SIZE);
-        super.setImage(new ImageIcon("Images/Brickwall300.png"));
+    public Barricade(int x, int y) {
+        super(x, y);
+        super.setImage(new ImageIcon("Images/Barricade.png"));
     }
 
-    public int getValue() {
-        return value;
+    public Barricade(int x, int y, int code) {
+        super(x, y);
+        this.code = code;
+        super.setImage(new ImageIcon("Images/Barricade.png"));
+    }
+
+    public int getCode() {
+        return this.code;
     }
 }

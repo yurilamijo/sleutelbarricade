@@ -15,8 +15,10 @@ import edu.hboictse.group5c.Objects.Key;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class FieldFrame extends JFrame {
+public class FieldFrame extends JFrame implements KeyListener {
 
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
@@ -28,14 +30,13 @@ public class FieldFrame extends JFrame {
     private FieldBuilder fieldBuilder;
     private Levels levels = new Levels(lvlNum);
 
-    private Player player = new Player(0, 0, lvlNum);
-
     public FieldFrame() {
         createComponents();
         setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
         setTitle("Sleutel barricade");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-//        addKeyListener(this.player);
+        setFocusable(true);
+        addKeyListener(this);
     }
 
     private void createComponents() {
@@ -48,7 +49,7 @@ public class FieldFrame extends JFrame {
         this.fieldBuilder = new FieldBuilder(levels.getLevel());
         this.field = new Field();
 
-        this.mainPanel.add(this.fieldBuilder, BorderLayout.CENTER);
+        this.mainPanel.add(this.field, BorderLayout.CENTER);
         this.mainPanel.add(this.optionsPanel, BorderLayout.EAST);
 
         add(this.mainPanel);
@@ -57,5 +58,41 @@ public class FieldFrame extends JFrame {
     private void createOptionsPanel() {
         this.optionsPanel = new JPanel();
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    /**
+     * Key listener for the Player
+     *
+     * @param e KeyEvent too detect Player movement
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_UP:
+                field.movePlayer("NORTH");
+                break;
+            case KeyEvent.VK_DOWN:
+                field.movePlayer("SOUTH" );
+                break;
+            case KeyEvent.VK_RIGHT:
+                field.movePlayer("EAST");
+                break;
+            case KeyEvent.VK_LEFT:
+                field.movePlayer("WEST");
+                break;
+            default:
+                System.out.println("Not a Key");
+                break;
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }

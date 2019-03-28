@@ -1,7 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.Objects.*;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,7 +16,6 @@ public class FieldBuilder extends JPanel {
 
     private void createField() {
         resetPositions();
-        resetSIZE();
         addLevel();
     }
 
@@ -30,13 +28,6 @@ public class FieldBuilder extends JPanel {
         }
     }
 
-    private void resetSIZE() {
-        for (int x = 0; x < this.level.length; x++) {
-            for (int y = 0; y < this.level[x].length; y++) {
-                this.level[x][y].setBlockSize(70);
-            }
-        }
-    }
     private void addLevel() {
         for (int x = 0; x < this.level.length; x++) {
             for (int y = 0; y < this.level[x].length; y++) {
