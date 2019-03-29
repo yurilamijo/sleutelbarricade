@@ -41,11 +41,11 @@ public class Field extends JPanel {
     }
 
     /**
-     * Create random Field
+     * Creates random Field
      */
     public void createRandomField() {
         buildRandomField();
-        addPlayer(new Player(0, 0, 1));
+        addPlayer(this.player);
         addEndTile(new EndTile(blocks.length - 1, blocks.length - 1));
     }
 
@@ -68,12 +68,15 @@ public class Field extends JPanel {
         }
 
         //  Adds Barricades to 2D Array
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 5; i++) {
             this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(100);
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(200);
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(300);
         }
 
-        for (int i = 0; i < 3; i++) {
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)].setGameObject(new Key(100));
+        //  Adds Keys to 2D Array
+        for (int i = 100; i <= 300; i += 100) {
+            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)].setGameObject(new Key(i));
         }
     }
 
@@ -93,6 +96,10 @@ public class Field extends JPanel {
         this.blocks[endTile.getPosX()][endTile.getPosY()] = endTile;
     }
 
+    /**
+     * Moves the PLayer in the field
+     * @param direction String with the direction
+     */
     public void movePlayer(String direction) {
         final int speed = 1;
         int nextPos = 0;
@@ -137,6 +144,9 @@ public class Field extends JPanel {
         this.updateField();
     }
 
+    /**
+     * Updates the field
+     */
     private void updateField() {
         this.removeAll();
         this.addBlocks();
@@ -144,6 +154,10 @@ public class Field extends JPanel {
         this.repaint();
     }
 
+    /**
+     * Sets the image of the Object
+     * @param block Block to set the image
+     */
     public static void setIcon(Block block) {
         final int imageSize = 70;
         Image image;

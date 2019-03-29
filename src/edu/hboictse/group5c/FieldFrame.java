@@ -1,18 +1,8 @@
 package edu.hboictse.group5c;
 
-/**
- * FieldFrame Class that extends JFrame
- *
- * @author Yuri Lamijo
- * @version 1.0
- */
-
-import edu.hboictse.group5c.Objects.Player;
 import edu.hboictse.group5c.GameField.Field;
 import edu.hboictse.group5c.GameField.FieldBuilder;
 import edu.hboictse.group5c.GameField.Levels;
-import edu.hboictse.group5c.Objects.Key;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * FieldFrame Class that extends JFrame
+ *
+ * @author Yuri Lamijo
+ * @version 1.0
+ */
 public class FieldFrame extends JFrame implements KeyListener {
 
     private static final int FRAME_WIDTH = 1028;
@@ -74,7 +70,6 @@ public class FieldFrame extends JFrame implements KeyListener {
 
     /**
      * Key listener for the Player
-     *
      * @param e KeyEvent too detect Player movement
      */
     @Override

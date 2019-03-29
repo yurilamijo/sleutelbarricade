@@ -2,7 +2,6 @@ package edu.hboictse.group5c.Objects.Blocks;
 
 import edu.hboictse.group5c.Objects.Key;
 import javax.swing.*;
-import java.awt.*;
 
 public class Tile extends Block {
     private Key key;
