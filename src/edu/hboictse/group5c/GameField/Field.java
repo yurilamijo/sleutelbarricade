@@ -5,6 +5,7 @@ import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * @author Yuri Lamijo
@@ -15,18 +16,19 @@ public class Field extends JPanel {
     private static final int SIZE = 70;
     private static final int GRID_SIZE = 900 / SIZE;
 
-    private Level level;
-    private Player player;
-    private Block[][] blocks = new Block[10][10];
-
     private int levelNumber = 1;
+
+    private Level level = new Level(levelNumber);
+    private Player player;
+    private Block[][] blocks = new Block[level.getBlocks().length][level.getBlocks().length];
+
 
     public Field() {
         this.player = new Player(0, 0);
 
         buildLevel(levelNumber);
         addBlocks();
-        setLayout(new GridLayout(10, 10));
+        setLayout(new GridLayout(level.getBlocks().length, level.getBlocks().length));
     }
 
     /**
