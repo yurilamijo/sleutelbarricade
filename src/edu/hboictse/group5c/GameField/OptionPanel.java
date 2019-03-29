@@ -9,8 +9,7 @@ import java.awt.event.ActionListener;
 
 import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 
-public class OptionPanel extends JFrame implements ActionListener{
-
+public class OptionPanel extends JFrame implements ActionListener {
 
 
     private static final int FRAME_WIDTH = 350;
@@ -19,14 +18,14 @@ public class OptionPanel extends JFrame implements ActionListener{
     private JPanel mainPanel;
 
 
-    public OptionPanel(){
+    public OptionPanel() {
         createOption();
         createMainPanel();
-     setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
-     setTitle("Options");
-     setDefaultCloseOperation(EXIT_ON_CLOSE);
-    setFocusable(true);
-    addActionListener(this);
+        setSize(new Dimension(FRAME_WIDTH, FRAME_HEIGHT));
+        setTitle("Options");
+//     setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setFocusable(true);
+        addActionListener(this);
     }
 
     private void createMainPanel() {
@@ -37,7 +36,7 @@ public class OptionPanel extends JFrame implements ActionListener{
     }
 
 
-    private void createOption(){
+    private void createOption() {
         this.option = new JPanel();
         this.option.add(new JButton("Restart"), BorderLayout.CENTER);
         this.option.add(new JButton("Exit"), BorderLayout.CENTER);
@@ -45,14 +44,9 @@ public class OptionPanel extends JFrame implements ActionListener{
     }
 
 
-
-
-
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        JOptionPane.showMessageDialog(option,"Woow");
+        JOptionPane.showMessageDialog(option, "Woow");
     }
 }
 

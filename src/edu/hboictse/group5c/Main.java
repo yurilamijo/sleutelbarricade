@@ -2,6 +2,7 @@ package edu.hboictse.group5c;
 
 
 import edu.hboictse.group5c.GameField.OptionPanel;
+import javax.swing.*;
 
 /**
  * Main Class of the game

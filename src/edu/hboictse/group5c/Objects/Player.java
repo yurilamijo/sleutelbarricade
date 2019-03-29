@@ -35,7 +35,7 @@ public class Player extends GameObject {
         Levels levels = new Levels(level);
         this.field = levels.getLevel();
 
-        super.setImage(new ImageIcon("Images/llama-6.png.png"));
+        super.setImage(new ImageIcon("Images/Player.png"));
     }
 
     /**
