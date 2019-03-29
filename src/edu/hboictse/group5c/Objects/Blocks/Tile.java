@@ -2,7 +2,6 @@ package edu.hboictse.group5c.Objects.Blocks;
 
 import edu.hboictse.group5c.Objects.Key;
 import javax.swing.*;
-import java.awt.*;
 
 public class Tile extends Block {
     private Key key;
@@ -26,12 +25,6 @@ public class Tile extends Block {
     public Tile(int x,int y, Key key) {
         super(x, y);
         this.key = key;
-        super.setImage(new ImageIcon("Images/Tile.png"));
-    }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        g.setColor(Color.GRAY);
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 

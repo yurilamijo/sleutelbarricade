@@ -82,7 +82,7 @@ public class Level1 {
                 return barricades[i];
             }
         }
-        return new Barricade(0,0,70,0);
+        return new Barricade(0,0,0);
     }
 
     public EndTile getEndTile() {

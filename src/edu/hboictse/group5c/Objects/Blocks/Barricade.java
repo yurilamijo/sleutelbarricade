@@ -24,7 +24,6 @@ public class Barricade extends Block {
     }
 
     private void setBarricadeImage() {
-        System.out.println(this.code);
         switch (this.code) {
             case 100:
                 super.setImage(new ImageIcon("Images/Barricade_100.png"));
