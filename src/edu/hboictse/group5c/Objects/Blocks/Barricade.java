@@ -17,12 +17,14 @@ public class Barricade extends Block {
     public Barricade(int x, int y, int SIZE) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
+        super.setImage(new ImageIcon("Images/Barricade.png"));
     }
 
     public Barricade(int x, int y, int SIZE, int value) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
         this.value = value;
+        super.setImage(new ImageIcon("Images/Barricade.png"));
     }
 
     @Override

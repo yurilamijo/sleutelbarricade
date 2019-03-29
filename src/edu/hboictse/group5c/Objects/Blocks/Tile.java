@@ -22,12 +22,14 @@ public class Tile extends Block {
     public Tile(int x, int y, int SIZE) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
+        super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     public Tile(int x,int y, int SIZE, Key key) {
         super(x, y, SIZE);
         this.SIZE = SIZE;
         this.key = key;
+        super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     @Override
