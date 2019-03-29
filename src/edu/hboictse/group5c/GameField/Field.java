@@ -6,6 +6,8 @@ import edu.hboictse.group5c.Objects.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -17,15 +19,18 @@ public class Field extends JPanel {
     private static final int SIZE = 70;
     private static final int GRID_SIZE = 900 / SIZE;
 
+    private Level level;
     private Player player;
-    private Block[][] blocks = new Block[GRID_SIZE][GRID_SIZE];
+    private Block[][] blocks = new Block[10][10];
+
+    private int levelNumber = 1;
 
     public Field() {
-        this.player = new Player(0, 0, 1);
+        this.player = new Player(0, 0);
 
-        createRandomField();
+        buildLevel(levelNumber);
         addBlocks();
-        setLayout(new GridLayout(GRID_SIZE, GRID_SIZE));
+        setLayout(new GridLayout(10, 10));
     }
 
     /**
@@ -41,88 +46,49 @@ public class Field extends JPanel {
     }
 
     /**
-     * Creates random Field
+     * Builds the level of the game
+     * @param levelNumber Integer with the level Number
      */
-    public void createRandomField() {
-        buildRandomField();
-//        buildLevel();
-        addPlayer(this.player);
-        addEndTile(new EndTile(blocks.length - 1, blocks.length - 1));
-    }
-
-    /**
-     * Builds the game field with Tiles, Wall and Barricades
-     */
-    private void buildRandomField() {
-        Random rand = new Random();
-
-        //  Adds Tiles to 2D Array
-        for (int y = 0; y < blocks.length; y++) {
-            for (int x = 0; x < blocks[y].length; x++) {
-                this.blocks[y][x] = new Tile();
-            }
-        }
-
-        //  Adds Walls to 2D Array
-        for (int i = 0; i < 4; i++) {
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Wall();
-        }
-
-        //  Adds Barricades to 2D Array
-        for (int i = 0; i < 5; i++) {
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(100);
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(200);
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)] = new Barricade(300);
-        }
-
-        //  Adds Keys to 2D Array
-        for (int i = 100; i <= 300; i += 100) {
-            this.blocks[rand.nextInt(GRID_SIZE)][rand.nextInt(GRID_SIZE)].setGameObject(new Key(i));
-        }
-    }
-
-    private void buildLevel() {
-        System.out.println(GRID_SIZE);
-        Level level = new Level();
-        for (int y = 0; y < level.getTiles().length; y++) {
-            for (int x = 0; x < level.getTiles()[y].length; x++) {
-                this.blocks[y][x] = new Tile();
-//                switch (level.getTiles()[y][x]) {
-//                    case 0:
-//                        this.blocks[y][x] = new Tile();
-//                        break;
-//                    case 1:
-//                        this.blocks[y][x] = new Wall();
-//                        break;
-//                    case 2:
-//                        this.blocks[y][x] = new Barricade(100);
-//                        break;
-//                    case 3:
-//                        this.blocks[y][x] = new Barricade(200);
-//                        break;
-//                    case 4:
-//                        this.blocks[y][x] = new Barricade(300);
-//                        break;
-//                    case 5:
-//                        this.blocks[y][x] = new Tile();
-//                        this.blocks[y][x].setGameObject(new Key(100));
-//                        break;
-//                    case 6:
-//                        this.blocks[y][x] = new Tile();
-//                        this.blocks[y][x].setGameObject(new Key(200));
-//                        break;
-//                    case 7:
-//                        this.blocks[y][x] = new Tile();
-//                        this.blocks[y][x].setGameObject(new Key(300));
-//                        break;
-//                    case 8:
-//                        this.blocks[y][x] = new EndTile();
-//                        break;
-//                    case 9:
-//                        this.blocks[y][x] = new Tile();
-//                        this.blocks[y][x].setGameObject(player);
-//                        break;
-//                }
+    private void buildLevel(int levelNumber) {
+        this.level = new Level(levelNumber);
+        for (int y = 0; y < level.getBlocks().length; y++) {
+            for (int x = 0; x < level.getBlocks()[y].length; x++) {
+                switch (level.getBlocks()[y][x]) {
+                    case 0:
+                        this.blocks[y][x] = new Tile();
+                        break;
+                    case 1:
+                        this.blocks[y][x] = new Wall();
+                        break;
+                    case 2:
+                        this.blocks[y][x] = new Barricade(100);
+                        break;
+                    case 3:
+                        this.blocks[y][x] = new Barricade(200);
+                        break;
+                    case 4:
+                        this.blocks[y][x] = new Barricade(300);
+                        break;
+                    case 5:
+                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x].setGameObject(new Key(100));
+                        break;
+                    case 6:
+                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x].setGameObject(new Key(200));
+                        break;
+                    case 7:
+                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x].setGameObject(new Key(300));
+                        break;
+                    case 8:
+                        this.blocks[y][x] = new EndTile();
+                        break;
+                    case 9:
+                        this.blocks[y][x] = new Tile();
+                        addPlayer(this.player);
+                        break;
+                }
             }
         }
     }

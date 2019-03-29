@@ -30,11 +30,8 @@ public class Player extends GameObject {
      * @param x Integer of the Player X position
      * @param y Integer of the Player Y position
      */
-    public Player(int x, int y, int level) {
+    public Player(int x, int y) {
         super(x, y);
-        Levels levels = new Levels(level);
-        this.field = levels.getLevel();
-
         super.setImage(new ImageIcon("Images/Player.png"));
     }
 
