@@ -89,21 +89,9 @@ public class Level1 {
         return this.endTile;
     }
 
-    /*public void setObject(Tile tile, int x, int y) {
-        for (int i = 0; i < tiles.length; i++) {
-            if(tiles[i].getPosX() == x && tiles[i].getPosY() == y) {
+    public void setTile() {
 
-            }
-        }
-        for (int i = 0; i < walls.length; i++) {
-            if(walls[i].getPosX() == x && walls[i].getPosY() == y) {
-            }
-        }
-        for (int i = 0; i < barricades.length; i++) {
-            if(barricades[i].getPosX() == x && barricades[i].getPosY() == y) {
-            }
-        }
-    }*/
+    }
 
     private Tile[] buildTiles() {
         return new Tile[] {
