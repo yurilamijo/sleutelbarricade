@@ -1,7 +1,5 @@
 package edu.hboictse.group5c;
 
-
-import edu.hboictse.group5c.GameField.OptionPanel;
 import javax.swing.*;
 
 /**
@@ -19,25 +17,10 @@ public class Main {
 //    private static OptionsPanel optionsField = new OptionsPanel();
     private static JPanel mainPanel = new JPanel();
 
-    private static OptionPanel kip = new OptionPanel();
-
-
-
-
-
     public static void main(String[] args) {
 //        mainPanel.add(gameField);
 //        mainPanel.add(optionsPanel);
 //        frame.add(mainPanel);
         frame.setVisible(true);
-        kip.setVisible(true);
-
-
-
-
     }
-
-
-
-
 }

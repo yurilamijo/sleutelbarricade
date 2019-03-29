@@ -1,8 +1,7 @@
 package edu.hboictse.group5c;
 
 import edu.hboictse.group5c.GameField.Field;
-import edu.hboictse.group5c.GameField.FieldBuilder;
-import edu.hboictse.group5c.GameField.Levels;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,14 +17,10 @@ public class FieldFrame extends JFrame implements KeyListener {
 
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
-    private final int lvlNum = 1;
-
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
     private Field field;
-    private FieldBuilder fieldBuilder;
-    private Levels levels = new Levels(lvlNum);
 
     public FieldFrame() {
         createComponents();
@@ -43,7 +38,6 @@ public class FieldFrame extends JFrame implements KeyListener {
 
     private void createMainPanel() {
         this.mainPanel = new JPanel(new BorderLayout());
-        this.fieldBuilder = new FieldBuilder(levels.getLevel());
         this.field = new Field();
 
         this.mainPanel.add(this.field, BorderLayout.CENTER);

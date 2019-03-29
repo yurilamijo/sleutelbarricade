@@ -8,9 +8,4 @@ public class Wall extends Block {
         super(0,0);
         super.setImage(new ImageIcon("Images/Wall.png"));
     }
-
-    public Wall(int x, int y) {
-        super(x, y);
-        super.setImage(new ImageIcon("Images/Wall.png"));
-    }
 }

@@ -8,9 +8,4 @@ public class EndTile extends Block {
        super(0,0);
        super.setImage(new ImageIcon("Images/EndTile.png"));
    }
-
-    public EndTile(int x, int y) {
-        super(x, y);
-        super.setImage(new ImageIcon("Images/EndTile.png"));
-    }
 }

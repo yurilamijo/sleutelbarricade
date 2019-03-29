@@ -12,12 +12,6 @@ public class Barricade extends Block {
         this.setBarricadeImage();
     }
 
-    public Barricade(int x, int y, int code) {
-        super(x, y);
-        this.code = code;
-        this.setBarricadeImage();
-    }
-
     private void setBarricadeImage() {
         switch (this.code) {
             case 100:

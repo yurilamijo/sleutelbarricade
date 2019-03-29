@@ -11,23 +11,6 @@ public class Tile extends Block {
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
-    public Tile(Key key) {
-        super(0,0);
-        this.key = key;
-        super.setImage(new ImageIcon("Images/Tile.png"));
-    }
-
-    public Tile(int x, int y) {
-        super(x, y);
-        super.setImage(new ImageIcon("Images/Tile.png"));
-    }
-
-    public Tile(int x,int y, Key key) {
-        super(x, y);
-        this.key = key;
-        super.setImage(new ImageIcon("Images/Tile.png"));
-    }
-
     public Key getKey() {
         return key;
     }

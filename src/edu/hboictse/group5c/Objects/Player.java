@@ -1,6 +1,5 @@
 package edu.hboictse.group5c.Objects;
 
-import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import javax.swing.*;
 
@@ -15,14 +14,6 @@ public class Player extends GameObject {
     private Block[][] field;
     private Key key;
     private Object Wall;
-
-    public Player(int level) {
-        super(0, 0);
-        Levels levels = new Levels(level);
-        this.field = levels.getLevel();
-
-        super.setImage(new ImageIcon("Images/Player.png"));
-    }
 
     /**
      * Constructor of Player
