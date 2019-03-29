@@ -3,12 +3,8 @@ package edu.hboictse.group5c.GameField;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
 /**
  * @author Yuri Lamijo
