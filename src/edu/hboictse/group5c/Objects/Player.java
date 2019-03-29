@@ -17,6 +17,7 @@ public class Player extends GameObject {
 
     private Block[][] field;
     private Key key;
+    private Object Wall;
 
     public Player(int level) {
         super(0, 0);
@@ -37,7 +38,7 @@ public class Player extends GameObject {
         Levels levels = new Levels(level);
         this.field = levels.getLevel();
 
-        super.setImage(new ImageIcon("Images/Player.png"));
+        super.setImage(new ImageIcon("Images/llama-6.png.png"));
     }
 
     public boolean checkMove(Block nextBlock) {
@@ -47,10 +48,12 @@ public class Player extends GameObject {
             return checkBarricadeValue(baricadeCode);
         } else if (nextBlock instanceof Wall) {
             System.out.println("Wall");
+            JOptionPane.showMessageDialog(null,"You shall not pass");
             return false;
         } else if (nextBlock instanceof Tile) {
             if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
                 System.out.println("Key");
+                JOptionPane.showMessageDialog(key,"You acquire the key!! you have the Key in your pocket now");
                 this.pickUpKey((Key) nextBlock.getGameObject());
             }
             return true;
@@ -60,10 +63,12 @@ public class Player extends GameObject {
 
     public boolean checkBarricadeValue(int barricadeCode) {
         if (this.key == null) {
+            JOptionPane.showMessageDialog(null,"To pass this barricade you need to acquire a key");
             System.out.println("NO KEY");
             return false;
         } else {
             if (barricadeCode == this.key.getCode()) {
+                JOptionPane.showMessageDialog(key,"You have a key that's fit!! you can pass now");
                 System.out.println("KEY !!!");
                 return true;
             } else {

@@ -15,6 +15,8 @@ import edu.hboictse.group5c.Objects.Key;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -23,6 +25,7 @@ public class FieldFrame extends JFrame implements KeyListener {
     private static final int FRAME_WIDTH = 1028;
     private static final int FRAME_HEIGHT = 900;
     private final int lvlNum = 1;
+
 
     private JPanel mainPanel;
     private JPanel optionsPanel;
@@ -58,7 +61,11 @@ public class FieldFrame extends JFrame implements KeyListener {
     private void createOptionsPanel() {
         this.optionsPanel = new JPanel();
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
+         this.optionsPanel.add(new JButton("Reset"), BorderLayout.CENTER);
     }
+
+
+
 
     @Override
     public void keyTyped(KeyEvent e) {
