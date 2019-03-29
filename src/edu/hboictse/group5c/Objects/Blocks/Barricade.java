@@ -12,11 +12,6 @@ public class Barricade extends Block {
         this.setBarricadeImage();
     }
 
-    public Barricade(int x, int y) {
-        super(x, y);
-        super.setImage(new ImageIcon("Images/Barricade.png"));
-    }
-
     public Barricade(int x, int y, int code) {
         super(x, y);
         this.code = code;

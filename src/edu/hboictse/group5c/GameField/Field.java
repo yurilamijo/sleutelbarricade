@@ -45,6 +45,7 @@ public class Field extends JPanel {
      */
     public void createRandomField() {
         buildRandomField();
+//        buildLevel();
         addPlayer(this.player);
         addEndTile(new EndTile(blocks.length - 1, blocks.length - 1));
     }
@@ -80,6 +81,52 @@ public class Field extends JPanel {
         }
     }
 
+    private void buildLevel() {
+        System.out.println(GRID_SIZE);
+        Level level = new Level();
+        for (int y = 0; y < level.getTiles().length; y++) {
+            for (int x = 0; x < level.getTiles()[y].length; x++) {
+                this.blocks[y][x] = new Tile();
+//                switch (level.getTiles()[y][x]) {
+//                    case 0:
+//                        this.blocks[y][x] = new Tile();
+//                        break;
+//                    case 1:
+//                        this.blocks[y][x] = new Wall();
+//                        break;
+//                    case 2:
+//                        this.blocks[y][x] = new Barricade(100);
+//                        break;
+//                    case 3:
+//                        this.blocks[y][x] = new Barricade(200);
+//                        break;
+//                    case 4:
+//                        this.blocks[y][x] = new Barricade(300);
+//                        break;
+//                    case 5:
+//                        this.blocks[y][x] = new Tile();
+//                        this.blocks[y][x].setGameObject(new Key(100));
+//                        break;
+//                    case 6:
+//                        this.blocks[y][x] = new Tile();
+//                        this.blocks[y][x].setGameObject(new Key(200));
+//                        break;
+//                    case 7:
+//                        this.blocks[y][x] = new Tile();
+//                        this.blocks[y][x].setGameObject(new Key(300));
+//                        break;
+//                    case 8:
+//                        this.blocks[y][x] = new EndTile();
+//                        break;
+//                    case 9:
+//                        this.blocks[y][x] = new Tile();
+//                        this.blocks[y][x].setGameObject(player);
+//                        break;
+//                }
+            }
+        }
+    }
+
     /**
      * Adds Player to 2D Array
      */
@@ -98,6 +145,7 @@ public class Field extends JPanel {
 
     /**
      * Moves the PLayer in the field
+     *
      * @param direction String with the direction
      */
     public void movePlayer(String direction) {
@@ -156,6 +204,7 @@ public class Field extends JPanel {
 
     /**
      * Sets the image of the Object
+     *
      * @param block Block to set the image
      */
     public static void setIcon(Block block) {

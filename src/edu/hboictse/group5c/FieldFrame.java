@@ -5,8 +5,6 @@ import edu.hboictse.group5c.GameField.FieldBuilder;
 import edu.hboictse.group5c.GameField.Levels;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -59,9 +57,6 @@ public class FieldFrame extends JFrame implements KeyListener {
         this.optionsPanel.add(new JButton("Test"), BorderLayout.CENTER);
          this.optionsPanel.add(new JButton("Reset"), BorderLayout.CENTER);
     }
-
-
-
 
     @Override
     public void keyTyped(KeyEvent e) {
