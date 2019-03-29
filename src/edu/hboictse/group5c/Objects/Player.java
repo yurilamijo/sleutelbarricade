@@ -3,8 +3,6 @@ package edu.hboictse.group5c.Objects;
 import edu.hboictse.group5c.GameField.Levels;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import javax.swing.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * Player Class
@@ -39,43 +37,54 @@ public class Player extends GameObject {
         super.setImage(new ImageIcon("Images/Player.png"));
     }
 
-    private Boolean checkMove(int x, int y) {
-        Block targetBlock = checkBlock(x, y);
-        if (targetBlock.getClass() == Barricade.class) {
-            return checkBarricade(targetBlock);
-        }
-        if (targetBlock.getClass() == Tile.class) {
-            return true;
-        }
-        if (targetBlock.getClass() == EndTile.class) {
+    /**
+     * Checks if Player will collide with a Tile, Barricade or Wall
+     * @param nextBlock Block that is possible the nextBlock
+     * @return A boolean if Player move is valid
+     */
+    public boolean checkMove(Block nextBlock) {
+        if (nextBlock instanceof Barricade) {
+            System.out.println("Barricade");
+            int baricadeCode = ((Barricade) nextBlock).getCode();
+            return checkBarricadeValue(baricadeCode);
+        } else if (nextBlock instanceof Wall) {
+            System.out.println("Wall");
+            return false;
+        } else if (nextBlock instanceof Tile) {
+            if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
+                System.out.println("Key");
+                this.pickUpKey((Key) nextBlock.getGameObject());
+            }
             return true;
         }
         return false;
     }
 
-    private Block checkBlock(int x, int y) {
-        return field[y][x];
-    }
-
-    private Boolean checkBarricade(Block targetBlock) {
-        //if getValue <= ket.getCode return true else return false
-        return true;
-    }
-
-    private Boolean checkValue(Barricade barricade) {
-        if (this.key.getCode() >= barricade.getValue()) {
-            this.key.setCode(this.key.getCode() - barricade.getValue());
-            return true;
-        } else {
+    /**
+     * Checks if the Key code and the Barricade code is the same
+     * @param barricadeCode Integer of the barricade code
+     * @return A boolean if Code of Key and Barricade is the same
+     */
+    public boolean checkBarricadeValue(int barricadeCode) {
+        if (this.key == null) {
+            System.out.println("NO KEY");
             return false;
+        } else {
+            if (barricadeCode == this.key.getCode()) {
+                System.out.println("KEY !!!");
+                return true;
+            } else {
+                System.out.println("WRONG KEY !!!");
+                return false;
+            }
         }
     }
 
+    /**
+     * Adds a Key to the Player pocket
+     * @param key Key that the player picked up
+     */
     public void pickUpKey(Key key) {
         this.key = key;
-    }
-
-    public void removeKey() {
-        // TODO: 2019-03-11  removeKey Method
     }
 }

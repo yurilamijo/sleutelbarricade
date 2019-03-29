@@ -5,29 +5,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Tile extends Block {
-    private int SIZE;
     private Key key;
 
     public Tile() {
-        super(0,0,70);
+        super(0,0);
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
     public Tile(Key key) {
-        super(0,0,70);
+        super(0,0);
         this.key = key;
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
-    public Tile(int x, int y, int SIZE) {
-        super(x, y, SIZE);
-        this.SIZE = SIZE;
+    public Tile(int x, int y) {
+        super(x, y);
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 
-    public Tile(int x,int y, int SIZE, Key key) {
-        super(x, y, SIZE);
-        this.SIZE = SIZE;
+    public Tile(int x,int y, Key key) {
+        super(x, y);
         this.key = key;
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
@@ -35,7 +32,6 @@ public class Tile extends Block {
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.GRAY);
-        g.fillRect(0, 0, this.getBlockSize(), this.getBlockSize());
         super.setImage(new ImageIcon("Images/Tile.png"));
     }
 

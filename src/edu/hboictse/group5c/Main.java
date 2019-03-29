@@ -1,6 +1,10 @@
 package edu.hboictse.group5c;
 
 
+import edu.hboictse.group5c.GameField.Field;
+
+import javax.swing.*;
+
 /**
  * Main Class of the game
  * FieldFrame - creates a JFrame of the game
@@ -12,8 +16,14 @@ package edu.hboictse.group5c;
 public class Main {
 
     private static FieldFrame frame = new FieldFrame();
+//    private static GameField gameField = new GameField();
+//    private static OptionsPanel optionsField = new OptionsPanel();
+    private static JPanel mainPanel = new JPanel();
 
     public static void main(String[] args) {
+//        mainPanel.add(gameField);
+//        mainPanel.add(optionsPanel);
+//        frame.add(mainPanel);
         frame.setVisible(true);
     }
 }
