@@ -1,6 +1,7 @@
 package edu.hboictse.group5c.Objects;
 
 import edu.hboictse.group5c.Objects.Blocks.*;
+
 import javax.swing.*;
 
 /**
@@ -11,9 +12,7 @@ import javax.swing.*;
  */
 public class Player extends GameObject {
 
-    private Block[][] field;
     private Key key;
-    private Object Wall;
 
     /**
      * Constructor of Player
@@ -28,6 +27,7 @@ public class Player extends GameObject {
 
     /**
      * Checks if Player will collide with a Tile, Barricade or Wall
+     *
      * @param nextBlock Block that is possible the nextBlock
      * @return A boolean if Player move is valid
      */
@@ -47,12 +47,16 @@ public class Player extends GameObject {
                 this.pickUpKey((Key) nextBlock.getGameObject());
             }
             return true;
+        } else if (nextBlock instanceof EndTile) {
+            JOptionPane.showMessageDialog(null,"END");
+            return true;
         }
         return false;
     }
 
     /**
      * Checks if the Key code and the Barricade code is the same
+     *
      * @param barricadeCode Integer of the barricade code
      * @return A boolean if Code of Key and Barricade is the same
      */
@@ -75,6 +79,7 @@ public class Player extends GameObject {
 
     /**
      * Adds a Key to the Player pocket
+     *
      * @param key Key that the player picked up
      */
     public void pickUpKey(Key key) {

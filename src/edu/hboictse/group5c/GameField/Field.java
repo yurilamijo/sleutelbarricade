@@ -5,7 +5,6 @@ import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 /**
  * @author Yuri Lamijo
@@ -96,15 +95,6 @@ public class Field extends JPanel {
      */
     public void addPlayer(Player player) {
         this.blocks[player.getPosY()][player.getPosX()].setGameObject(player);
-    }
-
-    /**
-     * Adds EndTile to the 2D array of Blocks
-     *
-     * @param endTile
-     */
-    private void addEndTile(EndTile endTile) {
-        this.blocks[endTile.getPosX()][endTile.getPosY()] = endTile;
     }
 
     /**
