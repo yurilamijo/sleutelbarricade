@@ -3,6 +3,7 @@ package edu.hboictse.group5c.GameField;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -44,6 +45,7 @@ public class Field extends JPanel {
 
     /**
      * Builds the level of the game
+     *
      * @param levelNumber Integer with the level Number
      */
     private void buildLevel(int levelNumber) {
@@ -52,37 +54,37 @@ public class Field extends JPanel {
             for (int x = 0; x < level.getBlocks()[y].length; x++) {
                 switch (level.getBlocks()[y][x]) {
                     case 0:
-                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x] = new Tile(x,y);
                         break;
                     case 1:
-                        this.blocks[y][x] = new Wall();
+                        this.blocks[y][x] = new Wall(x,y);
                         break;
                     case 2:
-                        this.blocks[y][x] = new Barricade(100);
+                        this.blocks[y][x] = new Barricade(x,y,100);
                         break;
                     case 3:
-                        this.blocks[y][x] = new Barricade(200);
+                        this.blocks[y][x] = new Barricade(x,y,200);
                         break;
                     case 4:
-                        this.blocks[y][x] = new Barricade(300);
+                        this.blocks[y][x] = new Barricade(x,y,300);
                         break;
                     case 5:
-                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x] = new Tile(x,y);
                         this.blocks[y][x].setGameObject(new Key(100));
                         break;
                     case 6:
-                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x] = new Tile(x,y);
                         this.blocks[y][x].setGameObject(new Key(200));
                         break;
                     case 7:
-                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x] = new Tile(x,y);
                         this.blocks[y][x].setGameObject(new Key(300));
                         break;
                     case 8:
-                        this.blocks[y][x] = new EndTile();
+                        this.blocks[y][x] = new EndTile(x,y);
                         break;
                     case 9:
-                        this.blocks[y][x] = new Tile();
+                        this.blocks[y][x] = new Tile(x,y);
                         addPlayer(this.player);
                         break;
                 }
@@ -112,9 +114,13 @@ public class Field extends JPanel {
         switch (direction) {
             case "NORTH":
                 nextPos = player.getPosY() - speed;
-                nextBlock = blocks[nextPos][player.getPosX()];
-                if (player.checkMove(nextBlock)) {
-                    player.setPosY(nextPos);
+                if (player.getPosY() == 0) {
+                    System.out.println("NOOOO !!!");
+                } else {
+                    nextBlock = blocks[nextPos][player.getPosX()];
+                    if (player.checkMove(nextBlock)) {
+                        player.setPosY(nextPos);
+                    }
                 }
                 break;
             case "SOUTH":
@@ -140,7 +146,7 @@ public class Field extends JPanel {
                 break;
         }
 
-        this.blocks[oldPosY][oldPosX] = new Tile();
+        this.blocks[oldPosY][oldPosX] = new Tile(oldPosX, oldPosY);
         this.addPlayer(player);
 
         this.updateField();

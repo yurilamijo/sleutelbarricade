@@ -32,18 +32,17 @@ public class Player extends GameObject {
      * @return A boolean if Player move is valid
      */
     public boolean checkMove(Block nextBlock) {
+        System.out.println(nextBlock.getPosX() + " - " + nextBlock.getPosY());
         if (nextBlock instanceof Barricade) {
             System.out.println("Barricade");
             int baricadeCode = ((Barricade) nextBlock).getCode();
             return checkBarricadeValue(baricadeCode);
         } else if (nextBlock instanceof Wall) {
             System.out.println("Wall");
-//            JOptionPane.showMessageDialog(null,"You shall not pass");
             return false;
         } else if (nextBlock instanceof Tile) {
             if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
                 System.out.println("Key");
-//                JOptionPane.showMessageDialog(key,"You acquire the key!! you have the Key in your pocket now");
                 this.pickUpKey((Key) nextBlock.getGameObject());
             }
             return true;
@@ -62,12 +61,10 @@ public class Player extends GameObject {
      */
     public boolean checkBarricadeValue(int barricadeCode) {
         if (this.key == null) {
-//            JOptionPane.showMessageDialog(null,"To pass this barricade you need to acquire a key");
-            System.out.println("NO KEY");
+            System.out.println("NO KEY !!!");
             return false;
         } else {
             if (barricadeCode == this.key.getCode()) {
-//                JOptionPane.showMessageDialog(key,"You have a key that's fit!! you can pass now");
                 System.out.println("KEY !!!");
                 return true;
             } else {
@@ -84,5 +81,9 @@ public class Player extends GameObject {
      */
     public void pickUpKey(Key key) {
         this.key = key;
+    }
+
+    public boolean hasKey(){
+        return this.key != null;
     }
 }
