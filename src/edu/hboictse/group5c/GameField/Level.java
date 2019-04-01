@@ -39,15 +39,19 @@ public class Level {
                 };
                 break;
             default:
+                this.blocks = null;
                 break;
         }
     }
 
     public void nextLevel() {
         this.levelNumber += 1;
+        setLevel();
     }
 
     public int[][] getBlocks() {
         return this.blocks;
     }
+
+    public int getLevelNumber() { return this.levelNumber; }
 }
