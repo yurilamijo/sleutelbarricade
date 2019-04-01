@@ -183,4 +183,8 @@ public class Field extends JPanel {
         }
         block.setIcon(new ImageIcon(image));
     }
+
+    public Block[][] getBlocks() {
+        return blocks;
+    }
 }

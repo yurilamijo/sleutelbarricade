@@ -1,6 +1,5 @@
 package edu.hboictse.group5c.GameField;
 
-import edu.hboictse.group5c.GameField.Level;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
