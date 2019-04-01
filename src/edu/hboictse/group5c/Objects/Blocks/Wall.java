@@ -4,8 +4,8 @@ import javax.swing.*;
 
 public class Wall extends Block {
 
-    public Wall() {
-        super(0,0);
+    public Wall(int x, int y) {
+        super(x,y);
         super.setImage(new ImageIcon("Images/Wall.png"));
     }
 }

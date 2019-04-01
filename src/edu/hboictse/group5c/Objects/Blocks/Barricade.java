@@ -6,8 +6,8 @@ public class Barricade extends Block {
 
     private int code;
 
-    public Barricade(int code) {
-        super(0, 0);
+    public Barricade(int x, int y, int code) {
+        super(x, y);
         this.code = code;
         this.setBarricadeImage();
     }
