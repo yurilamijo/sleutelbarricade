@@ -40,7 +40,7 @@ public class Game extends JFrame implements KeyListener {
     private static void createComponents() {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(field, BorderLayout.WEST);
-        mainPanel.add(optionPanel, BorderLayout.EAST);
+        //mainPanel.add(optionPanel, BorderLayout.EAST);
     }
 
     @Override

@@ -21,4 +21,19 @@ public class FieldTest {
     public void playerAtEdgeNorth() {
 
     }
+
+    @Test
+    public void playerAtEdgeEast() {
+
+    }
+
+    @Test
+    public void playerAtEdgeSouth() {
+
+    }
+
+    @Test
+    public void playerAtEdgeWest() {
+
+    }
 }
