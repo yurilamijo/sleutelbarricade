@@ -14,7 +14,6 @@ import java.awt.*;
 public class Field extends JPanel {
 
     private static final int SIZE = 70;
-    private static final int GRID_SIZE = 900 / SIZE;
 
     private int levelNumber = 1;
 
@@ -22,7 +21,10 @@ public class Field extends JPanel {
     private Player player;
     private Block[][] blocks = new Block[level.getBlocks().length][level.getBlocks().length];
 
-
+    /**
+     * Constructor of Field
+     * Builds the level and sets the layout to a GridLayout
+     */
     public Field() {
         this.player = new Player(0, 0);
 
@@ -54,37 +56,37 @@ public class Field extends JPanel {
             for (int x = 0; x < level.getBlocks()[y].length; x++) {
                 switch (level.getBlocks()[y][x]) {
                     case 0:
-                        this.blocks[y][x] = new Tile(x,y);
+                        this.blocks[y][x] = new Tile(x, y);
                         break;
                     case 1:
-                        this.blocks[y][x] = new Wall(x,y);
+                        this.blocks[y][x] = new Wall(x, y);
                         break;
                     case 2:
-                        this.blocks[y][x] = new Barricade(x,y,100);
+                        this.blocks[y][x] = new Barricade(x, y, 100);
                         break;
                     case 3:
-                        this.blocks[y][x] = new Barricade(x,y,200);
+                        this.blocks[y][x] = new Barricade(x, y, 200);
                         break;
                     case 4:
-                        this.blocks[y][x] = new Barricade(x,y,300);
+                        this.blocks[y][x] = new Barricade(x, y, 300);
                         break;
                     case 5:
-                        this.blocks[y][x] = new Tile(x,y);
+                        this.blocks[y][x] = new Tile(x, y);
                         this.blocks[y][x].setGameObject(new Key(100));
                         break;
                     case 6:
-                        this.blocks[y][x] = new Tile(x,y);
+                        this.blocks[y][x] = new Tile(x, y);
                         this.blocks[y][x].setGameObject(new Key(200));
                         break;
                     case 7:
-                        this.blocks[y][x] = new Tile(x,y);
+                        this.blocks[y][x] = new Tile(x, y);
                         this.blocks[y][x].setGameObject(new Key(300));
                         break;
                     case 8:
-                        this.blocks[y][x] = new EndTile(x,y);
+                        this.blocks[y][x] = new EndTile(x, y);
                         break;
                     case 9:
-                        this.blocks[y][x] = new Tile(x,y);
+                        this.blocks[y][x] = new Tile(x, y);
                         addPlayer(this.player);
                         break;
                 }
@@ -106,43 +108,26 @@ public class Field extends JPanel {
      */
     public void movePlayer(String direction) {
         final int speed = 1;
-        int nextPos = 0;
+        int nextPos;
         int oldPosX = player.getPosX();
         int oldPosY = player.getPosY();
-        Block nextBlock = null;
 
         switch (direction) {
             case "NORTH":
                 nextPos = player.getPosY() - speed;
-                if (player.getPosY() == 0) {
-                    System.out.println("NOOOO !!!");
-                } else {
-                    nextBlock = blocks[nextPos][player.getPosX()];
-                    if (player.checkMove(nextBlock)) {
-                        player.setPosY(nextPos);
-                    }
-                }
+                this.checkMove(nextPos, direction);
                 break;
             case "SOUTH":
                 nextPos = player.getPosY() + speed;
-                nextBlock = blocks[nextPos][player.getPosX()];
-                if (player.checkMove(nextBlock)) {
-                    player.setPosY(nextPos);
-                }
+                this.checkMove(nextPos, direction);
                 break;
             case "EAST":
                 nextPos = player.getPosX() + speed;
-                nextBlock = blocks[player.getPosY()][nextPos];
-                if (player.checkMove(nextBlock)) {
-                    player.setPosX(nextPos);
-                }
+                this.checkMove(nextPos, direction);
                 break;
             case "WEST":
                 nextPos = player.getPosX() - speed;
-                nextBlock = blocks[player.getPosY()][nextPos];
-                if (player.checkMove(nextBlock)) {
-                    player.setPosX(nextPos);
-                }
+                this.checkMove(nextPos, direction);
                 break;
         }
 
@@ -150,6 +135,47 @@ public class Field extends JPanel {
         this.addPlayer(player);
 
         this.updateField();
+    }
+
+    /**
+     * Check is player van move
+     *
+     * @param nextPos Integer with the next Y or X position
+     * @param direction String of the direction of the Player
+     */
+    private void checkMove(int nextPos, String direction) {
+        boolean checkNorthSouth = direction.equals("NORTH") || direction.equals("SOUTH");
+        Block nextBlock;
+
+        if (!this.checkEdge(nextPos, direction)) {
+            if (checkNorthSouth) {
+                nextBlock = blocks[nextPos][player.getPosX()];
+            } else {
+                nextBlock = blocks[player.getPosY()][nextPos];
+            }
+            if (player.checkCollision(nextBlock)) {
+                if (checkNorthSouth) {
+                    player.setPosY(nextPos);
+                } else {
+                    player.setPosX(nextPos);
+                }
+            }
+        }
+    }
+
+    /**
+     * Checks if Player will move out of field
+     *
+     * @param nextPos Integer with the next Y or X position
+     * @param direction String of the direction of the Player
+     * @return A boolean if player is on the edge
+     */
+    private boolean checkEdge(int nextPos, String direction) {
+        if (nextPos == -1 && direction.equals("NORTH") || nextPos == -1 && direction.equals("WEST") || nextPos >= blocks.length) {
+            System.out.println("EDGE OF THE WORLD !!");
+            return true;
+        }
+        return false;
     }
 
     /**

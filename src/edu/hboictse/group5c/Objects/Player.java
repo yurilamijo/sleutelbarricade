@@ -31,7 +31,7 @@ public class Player extends GameObject {
      * @param nextBlock Block that is possible the nextBlock
      * @return A boolean if Player move is valid
      */
-    public boolean checkMove(Block nextBlock) {
+    public boolean checkCollision(Block nextBlock) {
         System.out.println(nextBlock.getPosX() + " - " + nextBlock.getPosY());
         if (nextBlock instanceof Barricade) {
             System.out.println("Barricade");
@@ -83,6 +83,10 @@ public class Player extends GameObject {
         this.key = key;
     }
 
+    /**
+     * Checks if Player has a Key
+     * @return A boolean that says if PLayer has a Key
+     */
     public boolean hasKey(){
         return this.key != null;
     }

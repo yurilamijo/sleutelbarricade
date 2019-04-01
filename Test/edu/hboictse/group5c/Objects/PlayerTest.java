@@ -23,7 +23,7 @@ public class PlayerTest {
         Key key = new Key(100);
 
         tile.setGameObject(key);
-        player.checkMove(tile);
+        player.checkCollision(tile);
 
         assertEquals(player.checkBarricadeValue(100),true);
         assertEquals(player.checkBarricadeValue(200),false);
@@ -37,7 +37,7 @@ public class PlayerTest {
         Key key = new Key(200);
 
         tile.setGameObject(key);
-        player.checkMove(tile);
+        player.checkCollision(tile);
 
         assertEquals(player.checkBarricadeValue(100),false);
         assertEquals(player.checkBarricadeValue(200),true);
@@ -51,7 +51,7 @@ public class PlayerTest {
         Key key = new Key(300);
 
         tile.setGameObject(key);
-        player.checkMove(tile);
+        player.checkCollision(tile);
 
         assertEquals(player.checkBarricadeValue(100),false);
         assertEquals(player.checkBarricadeValue(200),false);
@@ -65,33 +65,33 @@ public class PlayerTest {
         Key key = new Key(100);
 
         tile.setGameObject(key);
-        player.checkMove(tile);
+        player.checkCollision(tile);
 
         assertEquals(player.hasKey(), true);
     }
 
     @Test
-    public void checkMoveWall() {
+    public void checkCollisionWall() {
         Player player = new Player(0,0);
         Block nextBlock = new Wall(0,1);
 
-        assertEquals(player.checkMove(nextBlock), false);
+        assertEquals(player.checkCollision(nextBlock), false);
     }
 
     @Test
-    public void checkMoveBarricade() {
+    public void checkCollisionBarricade() {
         Player player = new Player(0,0);
         Block nextBlock = new Barricade(0,1,100);
 
         assertEquals(player.hasKey(), false);
-        assertEquals(player.checkMove(nextBlock), false);
+        assertEquals(player.checkCollision(nextBlock), false);
     }
 
     @Test
-    public void checkMoveTile() {
+    public void checkCollisionTile() {
         Player player = new Player(0,0);
         Block nextBlock = new Tile(1,0);
 
-        assertEquals(player.checkMove(nextBlock), true);
+        assertEquals(player.checkCollision(nextBlock), true);
     }
 }
