@@ -1,4 +1,4 @@
-package edu.hboictse.group5c;
+package edu.hboictse.group5c.GameField;
 
 import edu.hboictse.group5c.GameField.Level;
 import org.junit.Test;
