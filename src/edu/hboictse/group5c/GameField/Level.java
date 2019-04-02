@@ -28,6 +28,9 @@ public class Level {
         this.setLevel();
     }
 
+    /**
+     * Makes the level
+     */
     private void setLevel() {
         switch (this.levelNumber) {
             case 1:
@@ -50,6 +53,9 @@ public class Level {
         }
     }
 
+    /**
+     * Sets the next level
+     */
     public void nextLevel() {
         this.levelNumber += 1;
         setLevel();

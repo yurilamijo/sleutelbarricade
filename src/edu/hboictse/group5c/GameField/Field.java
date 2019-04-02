@@ -1,5 +1,6 @@
 package edu.hboictse.group5c.GameField;
 
+import edu.hboictse.group5c.Game;
 import edu.hboictse.group5c.Objects.Blocks.*;
 import edu.hboictse.group5c.Objects.Key;
 import edu.hboictse.group5c.Objects.Player;
@@ -176,8 +177,7 @@ public class Field extends JPanel {
      */
     private boolean checkEdge(int nextPos, String direction) {
         if (nextPos == -1 && direction.equals("NORTH") || nextPos == -1 && direction.equals("WEST") || nextPos >= blocks.length) {
-            System.out.println("EDGE OF THE WORLD !!");
-            optionPanel.setLabelText("EDGE OF THE WORLD !!");
+            Game.setMessage("EDGE OF THE WORLD !!");
             return true;
         }
         optionPanel.setLabelText("");

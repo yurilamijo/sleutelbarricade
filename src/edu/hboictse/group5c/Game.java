@@ -69,4 +69,8 @@ public class Game extends JFrame implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
+    public static void setMessage(String msg){
+        optionPanel.setLabelText(msg);
+    }
 }

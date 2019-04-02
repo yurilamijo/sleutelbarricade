@@ -1,5 +1,7 @@
 package edu.hboictse.group5c.Objects;
 
+import edu.hboictse.group5c.Game;
+import edu.hboictse.group5c.GameField.OptionPanel;
 import edu.hboictse.group5c.Objects.Blocks.*;
 
 import javax.swing.*;
@@ -34,20 +36,19 @@ public class Player extends GameObject {
     public boolean checkCollision(Block nextBlock) {
         System.out.println(nextBlock.getPosX() + " - " + nextBlock.getPosY());
         if (nextBlock instanceof Barricade) {
-            System.out.println("Barricade");
             int baricadeCode = ((Barricade) nextBlock).getCode();
             return checkBarricadeValue(baricadeCode);
         } else if (nextBlock instanceof Wall) {
-            System.out.println("Wall");
+            Game.setMessage("Wall !!!");
             return false;
         } else if (nextBlock instanceof Tile) {
             if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
-                System.out.println("Key");
+                Game.setMessage("Picked up key");
                 this.pickUpKey((Key) nextBlock.getGameObject());
             }
             return true;
         } else if (nextBlock instanceof EndTile) {
-            JOptionPane.showMessageDialog(null,"END");
+            JOptionPane.showMessageDialog(null, "END");
             return true;
         }
         return false;
@@ -61,14 +62,14 @@ public class Player extends GameObject {
      */
     public boolean checkBarricadeValue(int barricadeCode) {
         if (this.key == null) {
-            System.out.println("NO KEY !!!");
+            Game.setMessage("NO KEY !!!");
             return false;
         } else {
             if (barricadeCode == this.key.getCode()) {
-                System.out.println("KEY !!!");
+                Game.setMessage("Open barricade");
                 return true;
             } else {
-                System.out.println("WRONG KEY !!!");
+                Game.setMessage("WRONG KEY !!!");
                 return false;
             }
         }
@@ -85,9 +86,10 @@ public class Player extends GameObject {
 
     /**
      * Checks if Player has a Key
+     *
      * @return A boolean that says if PLayer has a Key
      */
-    public boolean hasKey(){
+    public boolean hasKey() {
         return this.key != null;
     }
 }
