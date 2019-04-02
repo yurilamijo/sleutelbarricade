@@ -18,13 +18,15 @@ public class Game extends JFrame implements KeyListener {
 
     private static JPanel mainPanel = new JPanel();
     private static OptionPanel optionPanel = new OptionPanel();
-    private static Field field = new Field(optionPanel);
+    private static Field field = new Field();
 
     public Game() {
-        super.setSize(new Dimension(1028, 730));
+        super.setMinimumSize(new Dimension(900, 730));
         super.setTitle("Sleutel barricade");
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        super.setResizable(false);
         createComponents();
+        super.pack();
         super.add(mainPanel);
         super.setVisible(true);
     }
@@ -70,7 +72,11 @@ public class Game extends JFrame implements KeyListener {
 
     }
 
+    /**
+     *
+     * @param msg String with the message
+     */
     public static void setMessage(String msg){
-        optionPanel.setLabelText(msg);
+        optionPanel.setMessage(msg);
     }
 }

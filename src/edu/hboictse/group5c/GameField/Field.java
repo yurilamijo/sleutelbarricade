@@ -14,8 +14,6 @@ import java.awt.*;
  */
 public class Field extends JPanel {
 
-    private OptionPanel optionPanel;
-
     private int levelNumber = 1;
 
     private Level level = new Level(levelNumber);
@@ -26,15 +24,6 @@ public class Field extends JPanel {
      * Constructor of Field
      * Builds the level and sets the layout to a GridLayout
      */
-    public Field(OptionPanel op) {
-        this.optionPanel = op;
-        this.player = new Player(0, 0);
-
-        buildLevel(levelNumber);
-        addBlocks();
-        setLayout(new GridLayout(level.getBlocks().length, level.getBlocks().length));
-    }
-
     public Field() {
         this.player = new Player(0, 0);
 
@@ -180,7 +169,7 @@ public class Field extends JPanel {
             Game.setMessage("EDGE OF THE WORLD !!");
             return true;
         }
-        optionPanel.setLabelText("");
+        Game.setMessage("");
         return false;
     }
 

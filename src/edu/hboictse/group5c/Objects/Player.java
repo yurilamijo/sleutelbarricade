@@ -34,19 +34,18 @@ public class Player extends GameObject {
      * @return A boolean if Player move is valid
      */
     public boolean checkCollision(Block nextBlock) {
-        System.out.println(nextBlock.getPosX() + " - " + nextBlock.getPosY());
-        if (nextBlock instanceof Barricade) {
-            int baricadeCode = ((Barricade) nextBlock).getCode();
-            return checkBarricadeValue(baricadeCode);
-        } else if (nextBlock instanceof Wall) {
-            Game.setMessage("Wall !!!");
-            return false;
-        } else if (nextBlock instanceof Tile) {
+        if (nextBlock instanceof Tile) {
             if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
                 Game.setMessage("Picked up key");
                 this.pickUpKey((Key) nextBlock.getGameObject());
             }
             return true;
+        } else if (nextBlock instanceof Barricade) {
+            int baricadeCode = ((Barricade) nextBlock).getCode();
+            return checkBarricadeValue(baricadeCode);
+        } else if (nextBlock instanceof Wall) {
+            Game.setMessage("Wall !!!");
+            return false;
         } else if (nextBlock instanceof EndTile) {
             JOptionPane.showMessageDialog(null, "END");
             return true;
