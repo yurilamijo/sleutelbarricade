@@ -1,5 +1,11 @@
 package edu.hboictse.group5c.GameField;
 
+/**
+ * Level Class
+ *
+ * @author Yuri Lamijo / Niels van Schaik
+ * @version 0.1
+ */
 public class Level {
 
     private int[][] blocks;
@@ -26,16 +32,16 @@ public class Level {
         switch (this.levelNumber) {
             case 1:
                 this.blocks = new int[][]{
-                        {9, 1, 2, 0, 0, 0, 0, 2, 2, 2},
-                        {0, 0, 0, 0, 5, 7, 0, 2, 2, 2},
-                        {0, 0, 2, 0, 0, 0, 0, 4, 4, 5},
+                        {9, 1, 2, 0, 0, 0, 1, 2, 2, 2},
+                        {0, 3, 3, 0, 5, 7, 1, 2, 2, 2},
+                        {0, 3, 2, 0, 0, 0, 0, 4, 4, 5},
                         {0, 1, 2, 0, 0, 0, 0, 4, 3, 3},
-                        {0, 1, 2, 2, 0, 0, 0, 3, 2, 4},
-                        {0, 3, 2, 0, 0, 4, 0, 2, 4, 0},
-                        {0, 1, 2, 4, 3, 2, 0, 0, 0, 0},
-                        {6, 1, 2, 2, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 2, 2, 0, 0, 0, 0, 0, 0},
-                        {0, 1, 2, 2, 0, 0, 0, 0, 0, 8}
+                        {0, 1, 1, 3, 0, 0, 1, 3, 2, 4},
+                        {0, 3, 1, 3, 3, 4, 4, 2, 4, 0},
+                        {0, 1, 2, 4, 3, 2, 4, 2, 4, 0},
+                        {6, 1, 2, 1, 3, 2, 3, 4, 0, 0},
+                        {0, 1, 2, 1, 4, 4, 0, 0, 1, 1},
+                        {0, 1, 2, 2, 0, 1, 0, 0, 0, 8}
                 };
                 break;
             default:
@@ -53,5 +59,7 @@ public class Level {
         return this.blocks;
     }
 
-    public int getLevelNumber() { return this.levelNumber; }
+    public int getLevelNumber() {
+        return this.levelNumber;
+    }
 }

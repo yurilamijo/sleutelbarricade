@@ -8,6 +8,7 @@ import javax.swing.*;
  * contructor of the key class: The key gets de     , image get implemented into the key class. (with the TRY function )
  *
  * @author Alexsandy Richardson
+ * @version 0.1
  */
 
 public class Key extends GameObject {

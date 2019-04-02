@@ -13,8 +13,6 @@ import java.awt.*;
  */
 public class Field extends JPanel {
 
-    private static final int SIZE = 70;
-
     private int levelNumber = 1;
 
     private Level level = new Level(levelNumber);
@@ -138,21 +136,16 @@ public class Field extends JPanel {
     }
 
     /**
-     * Check is player van move
+     * Check if player can move
      *
      * @param nextPos Integer with the next Y or X position
      * @param direction String of the direction of the Player
      */
     private void checkMove(int nextPos, String direction) {
         boolean checkNorthSouth = direction.equals("NORTH") || direction.equals("SOUTH");
-        Block nextBlock;
 
         if (!this.checkEdge(nextPos, direction)) {
-            if (checkNorthSouth) {
-                nextBlock = blocks[nextPos][player.getPosX()];
-            } else {
-                nextBlock = blocks[player.getPosY()][nextPos];
-            }
+            Block nextBlock = checkNorthSouth ? blocks[nextPos][player.getPosX()] : blocks[player.getPosY()][nextPos];
             if (player.checkCollision(nextBlock)) {
                 if (checkNorthSouth) {
                     player.setPosY(nextPos);

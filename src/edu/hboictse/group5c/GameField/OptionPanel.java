@@ -5,6 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Player Class
+ *
+ * @author Alexsandy Richardson
+ * @version 0.1
+ */
 public class OptionPanel extends JPanel implements ActionListener {
 
     private JPanel option;
