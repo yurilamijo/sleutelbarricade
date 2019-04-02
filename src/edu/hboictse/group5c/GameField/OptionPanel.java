@@ -5,20 +5,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Player Class
- *
- * @author Alexsandy Richardson
- * @version 0.1
- */
 public class OptionPanel extends JPanel implements ActionListener {
 
     private JPanel option;
     private JPanel mainPanel;
 
+    private JLabel outPrint;
+
     public OptionPanel() {
         createOption();
         createMainPanel();
+    }
+
+    public void setLabelText(String txt) {
+        outPrint.setText(txt);
+        super.update(this.getGraphics());
     }
 
     private void createMainPanel() {
@@ -30,14 +31,17 @@ public class OptionPanel extends JPanel implements ActionListener {
 
     private void createOption() {
         this.option = new JPanel();
+        option.setLayout(new GridLayout(2,2,20,50));
         JButton reset = new JButton("Reset");
         JButton nextLevel = new JButton("Next Level");
+        outPrint = new JLabel("test");
 
         reset.addActionListener(this);
         nextLevel.addActionListener(this);
 
         this.option.add(reset);
         this.option.add(nextLevel);
+        this.option.add(outPrint);
     }
 
     @Override

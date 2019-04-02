@@ -17,8 +17,8 @@ import java.awt.event.KeyListener;
 public class Game extends JFrame implements KeyListener {
 
     private static JPanel mainPanel = new JPanel();
-    private static Field field = new Field();
     private static OptionPanel optionPanel = new OptionPanel();
+    private static Field field = new Field(optionPanel);
 
     public Game() {
         super.setSize(new Dimension(1028, 730));
@@ -40,7 +40,7 @@ public class Game extends JFrame implements KeyListener {
     private static void createComponents() {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(field, BorderLayout.WEST);
-        //mainPanel.add(optionPanel, BorderLayout.EAST);
+        mainPanel.add(optionPanel, BorderLayout.EAST);
     }
 
     @Override
