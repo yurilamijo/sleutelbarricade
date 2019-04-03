@@ -24,11 +24,13 @@ public class Player extends GameObject {
      */
     public Player(int x, int y) {
         super(x, y);
+        //  Sets the image of the Player
         super.setImage(new ImageIcon("Images/Player.png"));
     }
 
     /**
      * Checks if Player will collide with a Tile, Barricade or Wall
+     * Returns true if Player can move and returns false if move is not possible
      *
      * @param nextBlock Block that is possible the nextBlock
      * @return A boolean if Player move is valid
@@ -36,8 +38,9 @@ public class Player extends GameObject {
     public boolean checkCollision(Block nextBlock) {
         if (nextBlock instanceof Tile) {
             if (nextBlock.hasGameObject() && nextBlock.getGameObject() instanceof Key) {
-                Game.setMessage("Picked up key");
+                //  Player picks up Key
                 this.pickUpKey((Key) nextBlock.getGameObject());
+                Game.setMessage("Picked up key");
             }
             return true;
         } else if (nextBlock instanceof Barricade) {
@@ -60,10 +63,12 @@ public class Player extends GameObject {
      * @return A boolean if Code of Key and Barricade is the same
      */
     public boolean checkBarricadeValue(int barricadeCode) {
-        if (this.key == null) {
+        //  Checks if Player has a Key
+        if (!this.hasKey()) {
             Game.setMessage("NO KEY !!!");
             return false;
         } else {
+            //  Checks if Key code is the same as Barricade code
             if (barricadeCode == this.key.getCode()) {
                 Game.setMessage("Open barricade");
                 return true;

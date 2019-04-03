@@ -10,17 +10,24 @@ import javax.swing.*;
  * @author Alexsandy Richardson
  * @version 0.1
  */
-
 public class Key extends GameObject {
 
     private int code;
 
+    /**
+     * Constructor of Key
+     *
+     * @param code Integer code of the Key
+     */
     public Key(int code) {
         super(0, 0);
         this.code = code;
         this.setKeyImage();
     }
 
+    /**
+     * Sets the right Key image by code
+     */
     private void setKeyImage() {
         switch (this.code) {
             case 100:
@@ -38,6 +45,11 @@ public class Key extends GameObject {
         }
     }
 
+    /**
+     * Returns the code of the Key
+     *
+     * @return Integer of code
+     */
     public int getCode() {
         return code;
     }

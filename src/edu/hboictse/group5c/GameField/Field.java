@@ -18,18 +18,18 @@ public class Field extends JPanel {
 
     private Level level = new Level(levelNumber);
     private Player player;
-    private Block[][] blocks = new Block[level.getBlocks().length][level.getBlocks().length];
-
+    private Block[][] blocks;
     /**
      * Constructor of Field
      * Builds the level and sets the layout to a GridLayout
      */
     public Field() {
         this.player = new Player(0, 0);
+        this.blocks = new Block[this.level.getBlocks().length][this.level.getBlocks().length];
 
         buildLevel(levelNumber);
         addBlocks();
-        setLayout(new GridLayout(level.getBlocks().length, level.getBlocks().length));
+        setLayout(new GridLayout(this.level.getBlocks().length, this.level.getBlocks().length));
     }
 
     /**

@@ -12,6 +12,18 @@ public class Level {
     private int levelNumber;
 
     /**
+     * Constructor of Level
+     *
+     * @param levelNumber Integer with the levelNumber
+     */
+    public Level(int levelNumber) {
+        this.levelNumber = levelNumber;
+        this.setLevel();
+    }
+
+    /**
+     * Makes the level by levelNumber
+     * <p>
      * 0 -> Tile
      * 1 -> Wall
      * 2 -> Barricade 100
@@ -22,14 +34,6 @@ public class Level {
      * 7 -> Key 100
      * 8 -> EndTile
      * 9 -> Player
-     */
-    public Level(int levelNumber) {
-        this.levelNumber = levelNumber;
-        this.setLevel();
-    }
-
-    /**
-     * Makes the level
      */
     private void setLevel() {
         switch (this.levelNumber) {
