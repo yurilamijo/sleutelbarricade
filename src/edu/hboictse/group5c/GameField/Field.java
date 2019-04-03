@@ -150,10 +150,14 @@ public class Field extends JPanel {
             Block nextBlock = checkNorthSouth ? blocks[nextPos][player.getPosX()] : blocks[player.getPosY()][nextPos];
 
             if(player.checkPlayerOnEndField(nextBlock)){
-                level.nextLevel();
-                this.player = new Player(0,0);
-                this.buildLevel(level.getLevelNumber());
-                this.addBlocks();
+                if(!level.checkFinalLevel()) {
+                    level.nextLevel();
+                    this.player = new Player(0, 0);
+                    this.buildLevel(level.getLevelNumber());
+                    this.addBlocks();
+                } else {
+                    JOptionPane.showMessageDialog(null,"YOU HAVE WON !!!");
+                }
             } else {
                 if (player.checkCollision(nextBlock)) {
                     if (checkNorthSouth) {

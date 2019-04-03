@@ -10,6 +10,7 @@ public class Level {
 
     private int[][] blocks;
     private int levelNumber;
+    private final int finalLevel = 2;
 
     /**
      * Constructor of Level
@@ -56,10 +57,10 @@ public class Level {
                         {9, 0, 0, 0, 0, 5, 0, 0, 0, 0},
                         {1, 1, 2, 2, 1, 1, 1, 3, 1, 3},
                         {0, 1, 2, 2, 1, 7, 1, 3, 1, 3},
-                        {6, 1, 2, 2, 1, 0, 1, 4, 1, 3},
-                        {0, 1, 2, 2, 1, 0, 1, 4, 1, 3},
+                        {6, 1, 2, 2, 1, 2, 1, 4, 1, 3},
+                        {0, 1, 2, 2, 1, 2, 1, 4, 1, 3},
                         {0, 1, 2, 3, 3, 3, 3, 4, 1, 3},
-                        {0, 0, 0, 0, 0, 5, 0, 4, 1, 3},
+                        {0, 0, 0, 0, 0, 0, 0, 4, 1, 3},
                         {1, 1, 1, 1, 1, 1, 2, 2, 3, 3},
                         {3, 3, 3, 3, 3, 3, 2, 1, 1, 1},
                         {3, 3, 3, 2, 2, 2, 4, 4, 4, 8},
@@ -81,6 +82,10 @@ public class Level {
 
     public int getLevelNumber() {
         return this.levelNumber;
+    }
+
+    public boolean checkFinalLevel(){
+        return this.finalLevel == this.levelNumber;
     }
 
     public int[][] getBlocks() {
