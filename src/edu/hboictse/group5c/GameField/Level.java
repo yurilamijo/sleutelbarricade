@@ -62,7 +62,7 @@ public class Level {
                         {0, 1, 2, 3, 3, 3, 3, 4, 1, 3},
                         {0, 0, 0, 0, 0, 0, 0, 4, 1, 3},
                         {1, 1, 1, 1, 1, 1, 2, 2, 3, 3},
-                        {3, 3, 3, 3, 3, 3, 2, 1, 1, 1},
+                        {3, 5, 3, 3, 3, 3, 2, 1, 1, 1},
                         {3, 3, 3, 2, 2, 2, 4, 4, 4, 8},
                 };
                 break;
@@ -80,14 +80,28 @@ public class Level {
         setLevel();
     }
 
+    /**
+     * Gets the currentLevelNumber
+     * @return Integer of the current levelNumber
+     */
     public int getLevelNumber() {
         return this.levelNumber;
     }
 
+    /**
+     * Checks is player is on the final level
+     * @return Boolean of player is on the final level
+     */
     public boolean checkFinalLevel(){
         return this.finalLevel == this.levelNumber;
     }
 
+    /**
+     * Returns the 2D array of Integers
+     * More for testing purposes
+     *
+     * @return double Integer array
+     */
     public int[][] getBlocks() {
         return this.blocks;
     }

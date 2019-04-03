@@ -28,7 +28,7 @@ public class Field extends JPanel {
         this.player = new Player(0, 0);
         this.blocks = new Block[this.level.getBlocks().length][this.level.getBlocks().length];
 
-        buildLevel(levelNumber);
+        buildLevel(level.getLevelNumber());
         addBlocks();
         setLayout(new GridLayout(this.level.getBlocks().length, this.level.getBlocks().length));
     }

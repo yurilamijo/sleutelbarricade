@@ -54,6 +54,11 @@ public class Player extends GameObject {
         return false;
     }
 
+    /**
+     * Checks is player is will step on EndTile
+     * @param nextBlock Block this is possible the EndTile
+     * @return A boolean if it is a EndTile
+     */
     public boolean checkPlayerOnEndField(Block nextBlock){
         if (nextBlock instanceof EndTile) {
             JOptionPane.showMessageDialog(null, "END");
