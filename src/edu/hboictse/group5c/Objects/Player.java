@@ -1,6 +1,7 @@
 package edu.hboictse.group5c.Objects;
 
 import edu.hboictse.group5c.Game;
+import edu.hboictse.group5c.GameField.Level;
 import edu.hboictse.group5c.GameField.OptionPanel;
 import edu.hboictse.group5c.Objects.Blocks.*;
 
@@ -49,7 +50,12 @@ public class Player extends GameObject {
         } else if (nextBlock instanceof Wall) {
             Game.setMessage("Wall !!!");
             return false;
-        } else if (nextBlock instanceof EndTile) {
+        }
+        return false;
+    }
+
+    public boolean checkPlayerOnEndField(Block nextBlock){
+        if (nextBlock instanceof EndTile) {
             JOptionPane.showMessageDialog(null, "END");
             return true;
         }

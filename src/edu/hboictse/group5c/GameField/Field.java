@@ -19,6 +19,7 @@ public class Field extends JPanel {
     private Level level = new Level(levelNumber);
     private Player player;
     private Block[][] blocks;
+
     /**
      * Constructor of Field
      * Builds the level and sets the layout to a GridLayout
@@ -139,7 +140,7 @@ public class Field extends JPanel {
     /**
      * Check if player can move
      *
-     * @param nextPos Integer with the next Y or X position
+     * @param nextPos   Integer with the next Y or X position
      * @param direction String of the direction of the Player
      */
     private void checkMove(int nextPos, String direction) {
@@ -147,11 +148,19 @@ public class Field extends JPanel {
 
         if (!this.checkEdge(nextPos, direction)) {
             Block nextBlock = checkNorthSouth ? blocks[nextPos][player.getPosX()] : blocks[player.getPosY()][nextPos];
-            if (player.checkCollision(nextBlock)) {
-                if (checkNorthSouth) {
-                    player.setPosY(nextPos);
-                } else {
-                    player.setPosX(nextPos);
+
+            if(player.checkPlayerOnEndField(nextBlock)){
+                level.nextLevel();
+                this.player = new Player(0,0);
+                this.buildLevel(level.getLevelNumber());
+                this.addBlocks();
+            } else {
+                if (player.checkCollision(nextBlock)) {
+                    if (checkNorthSouth) {
+                        player.setPosY(nextPos);
+                    } else {
+                        player.setPosX(nextPos);
+                    }
                 }
             }
         }
@@ -160,7 +169,7 @@ public class Field extends JPanel {
     /**
      * Checks if Player will move out of field
      *
-     * @param nextPos Integer with the next Y or X position
+     * @param nextPos   Integer with the next Y or X position
      * @param direction String of the direction of the Player
      * @return A boolean if player is on the edge
      */
@@ -188,7 +197,7 @@ public class Field extends JPanel {
      *
      * @param block Block to set the image
      */
-    public static void setIcon(Block block) {
+    public void setIcon(Block block) {
         final int imageSize = 70;
         Image image;
 
