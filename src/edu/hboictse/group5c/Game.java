@@ -22,10 +22,10 @@ public class Game extends JFrame implements KeyListener {
     private static Game game = new Game();
 
     public Game() {
-        super.setMinimumSize(new Dimension(900, 730));
+        super.setMinimumSize(new Dimension(1028, 900));
         super.setTitle("Sleutel barricade");
         super.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        super.setResizable(false);
+//        super.setResizable(false);
         createComponents();
         super.pack();
         super.add(mainPanel);
@@ -37,9 +37,12 @@ public class Game extends JFrame implements KeyListener {
     }
 
     private static void createComponents() {
+        JPanel center = new JPanel();
+        center.add(field);
+
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(field, BorderLayout.WEST);
-        mainPanel.add(optionPanel, BorderLayout.EAST);
+        mainPanel.add(optionPanel, BorderLayout.NORTH);
+        mainPanel.add(center, BorderLayout.CENTER);
     }
 
     @Override

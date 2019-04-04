@@ -17,7 +17,7 @@ public class OptionPanel extends JPanel {
     private JPanel option;
     private JPanel mainPanel;
 
-    private JLabel message = new JLabel();
+    private JLabel message = new JLabel("Welcom");
 
     /**
      * Constructor of OptionsPanel
@@ -25,7 +25,7 @@ public class OptionPanel extends JPanel {
     public OptionPanel() {
         createOption();
         createMainPanel();
-        this.setPreferredSize(new Dimension(200, 900));
+        this.message.setHorizontalAlignment(SwingConstants.CENTER);
     }
 
     /**
@@ -34,7 +34,6 @@ public class OptionPanel extends JPanel {
      * @param txt String of the message
      */
     public void setMessage(String txt) {
-        this.message.setHorizontalAlignment(SwingConstants.CENTER);
         this.message.setText(txt);
         super.update(this.getGraphics());
     }

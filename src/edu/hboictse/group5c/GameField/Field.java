@@ -14,9 +14,7 @@ import java.awt.*;
  */
 public class Field extends JPanel {
 
-    private int levelNumber = 1;
-
-    private Level level = new Level(levelNumber);
+    private Level level;
     private Player player;
     private Block[][] blocks;
 
@@ -25,12 +23,13 @@ public class Field extends JPanel {
      * Builds the level and sets the layout to a GridLayout
      */
     public Field() {
+        this.level = new Level(1);
         this.player = new Player(0, 0);
         this.blocks = new Block[this.level.getBlocks().length][this.level.getBlocks().length];
 
         buildLevel(level.getLevelNumber());
         addBlocks();
-        setLayout(new GridLayout(this.level.getBlocks().length, this.level.getBlocks().length));
+        setLayout(new GridLayout(this.level.getBlocks()[0].length, this.level.getBlocks().length));
     }
 
     /**
@@ -51,6 +50,10 @@ public class Field extends JPanel {
      * @param levelNumber Integer with the level Number
      */
     public void buildLevel(int levelNumber) {
+        if (this.blocks.length != this.level.getBlocks().length) {
+            this.setFieldLayout();
+        }
+
         this.level = new Level(levelNumber);
         for (int y = 0; y < this.level.getBlocks().length; y++) {
             for (int x = 0; x < this.level.getBlocks()[y].length; x++) {
@@ -116,25 +119,23 @@ public class Field extends JPanel {
         switch (direction) {
             case "NORTH":
                 nextPos = this.player.getPosY() - speed;
-                this.checkMove(nextPos, direction);
+                this.checkMove(nextPos, direction, oldPosX, oldPosY);
                 break;
             case "SOUTH":
                 nextPos = this.player.getPosY() + speed;
-                this.checkMove(nextPos, direction);
+                this.checkMove(nextPos, direction, oldPosX, oldPosY);
                 break;
             case "EAST":
                 nextPos = this.player.getPosX() + speed;
-                this.checkMove(nextPos, direction);
+                this.checkMove(nextPos, direction, oldPosX, oldPosY);
                 break;
             case "WEST":
                 nextPos = this.player.getPosX() - speed;
-                this.checkMove(nextPos, direction);
+                this.checkMove(nextPos, direction, oldPosX, oldPosY);
                 break;
         }
 
-        this.blocks[oldPosY][oldPosX] = new Tile(oldPosX, oldPosY);
         this.addPlayer(this.player);
-
         this.updateField("UPDATE");
     }
 
@@ -144,7 +145,7 @@ public class Field extends JPanel {
      * @param nextPos   Integer with the next Y or X position
      * @param direction String of the direction of the Player
      */
-    public void checkMove(int nextPos, String direction) {
+    public void checkMove(int nextPos, String direction, int oldPosX, int oldPosY) {
         boolean checkNorthSouth = direction.equals("NORTH") || direction.equals("SOUTH");
 
         this.player.setDirection(direction);
@@ -166,6 +167,7 @@ public class Field extends JPanel {
                     } else {
                         player.setPosX(nextPos);
                     }
+                    this.blocks[oldPosY][oldPosX] = new Tile(oldPosX, oldPosY);
                 }
             }
         }
@@ -183,12 +185,13 @@ public class Field extends JPanel {
             Game.setMessage("EDGE OF THE WORLD !!");
             return true;
         }
-        Game.setMessage("");
+        Game.setMessage("MOVED");
         return false;
     }
 
     /**
      * Updates the Fiel on RESET, NEXT_LEVEL or UPDATE
+     *
      * @param type String of the type update
      */
     public void updateField(String type) {
@@ -220,6 +223,12 @@ public class Field extends JPanel {
             image = block.getImage().getImage().getScaledInstance(imageSize, imageSize, java.awt.Image.SCALE_SMOOTH);
         }
         block.setIcon(new ImageIcon(image));
+    }
+
+    private void setFieldLayout() {
+        this.blocks = new Block[this.level.getBlocks()[0].length][this.level.getBlocks().length];
+        setLayout(new GridLayout(this.level.getBlocks()[0].length, this.level.getBlocks().length));
+        setPreferredSize(new Dimension(this.level.getBlocks()[0].length * 70, this.level.getBlocks().length * 70));
     }
 
     public Block[][] getBlocks() {
