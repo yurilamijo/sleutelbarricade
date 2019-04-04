@@ -6,7 +6,7 @@ import javax.swing.*;
 
 /**
  * @author Yuri Lamijo
- * @version 0.1
+ * @version 1.0
  */
 public class Block extends JLabel {
 
@@ -18,6 +18,7 @@ public class Block extends JLabel {
 
     /**
      * Constructor of Block with X and Y positions
+     *
      * @param x Position of Block
      * @param y Position of Block
      */
@@ -64,6 +65,7 @@ public class Block extends JLabel {
 
     /**
      * Checks if Block has a GameObject and then returns a boolean
+     *
      * @return A boolean if Block has a GameObject
      */
     public boolean hasGameObject() {
@@ -72,6 +74,7 @@ public class Block extends JLabel {
 
     /**
      * Returns a GameObject if Block has one
+     *
      * @return GameObject of the Block
      */
     public GameObject getGameObject() {
@@ -80,6 +83,7 @@ public class Block extends JLabel {
 
     /**
      * Sets a GameObject of Block
+     *
      * @param gameObject GameObject of Block
      */
     public void setGameObject(GameObject gameObject) {

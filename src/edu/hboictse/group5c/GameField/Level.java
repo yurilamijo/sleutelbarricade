@@ -3,8 +3,8 @@ package edu.hboictse.group5c.GameField;
 /**
  * Level Class
  *
- * @author Yuri Lamijo / Niels van Schaik
- * @version 0.1
+ * @author Yuri Lamijo / Niels van Schaik / Alexsandy Richardson
+ * @version 1.0
  */
 public class Level {
 

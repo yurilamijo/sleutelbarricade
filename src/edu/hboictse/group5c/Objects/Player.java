@@ -11,7 +11,7 @@ import javax.swing.*;
  * Player Class
  *
  * @author Yuri Lamijo
- * @version 0.1
+ * @version 1.0
  */
 public class Player extends GameObject {
 

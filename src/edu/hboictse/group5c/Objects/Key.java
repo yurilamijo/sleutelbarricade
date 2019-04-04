@@ -5,7 +5,7 @@ import javax.swing.*;
 /**
  * Key class of the game
  * @author Alexsandy Richardson
- * @version 0.1
+ * @version 1.0
  */
 public class Key extends GameObject {
 

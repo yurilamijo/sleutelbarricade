@@ -12,7 +12,7 @@ import java.awt.event.KeyListener;
  * Game Class of the game
  *
  * @author Yuri Lamijo
- * @version 0.1
+ * @version 1.0
  */
 public class Game extends JFrame implements KeyListener {
 
@@ -82,7 +82,7 @@ public class Game extends JFrame implements KeyListener {
     }
 
     /**
-     *
+     * Sets the message for the Player
      * @param msg String with the message
      */
     public static void setMessage(String msg){

@@ -10,7 +10,7 @@ import java.awt.*;
 
 /**
  * @author Yuri Lamijo
- * @version 0.1
+ * @version 1.0
  */
 public class Field extends JPanel {
 
@@ -188,7 +188,8 @@ public class Field extends JPanel {
     }
 
     /**
-     * Updates the field
+     * Updates the Fiel on RESET, NEXT_LEVEL or UPDATE
+     * @param type String of the type update
      */
     public void updateField(String type) {
         this.removeAll();
@@ -204,7 +205,7 @@ public class Field extends JPanel {
      *
      * @param block Block to set the image
      */
-    public void setIcon(Block block) {
+    private void setIcon(Block block) {
         final int imageSize = 70;
         Image image;
 
@@ -223,14 +224,5 @@ public class Field extends JPanel {
 
     public Block[][] getBlocks() {
         return this.blocks;
-    }
-
-    /**
-     * Returns the level
-     *
-     * @return Level Object
-     */
-    public Level getLevel() {
-        return this.level;
     }
 }

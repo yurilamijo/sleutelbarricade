@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
  * Class of OptionsPanel
  *
  * @author Alexsandy Richardson
- * @version 0.1
+ * @version 1.0
  */
 public class OptionPanel extends JPanel {
 
