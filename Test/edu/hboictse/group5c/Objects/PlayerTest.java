@@ -11,6 +11,7 @@ public class PlayerTest {
     public void checkBarricadeValue_NoKey() {
         Player player = new Player(0,0);
 
+        assertEquals(player.hasKey(), false);
         assertEquals(player.checkBarricadeValue(100),false);
         assertEquals(player.checkBarricadeValue(200),false);
         assertEquals(player.checkBarricadeValue(300),false);
@@ -25,6 +26,7 @@ public class PlayerTest {
         tile.setGameObject(key);
         player.checkCollision(tile);
 
+        assertEquals(player.hasKey(), true);
         assertEquals(player.checkBarricadeValue(100),true);
         assertEquals(player.checkBarricadeValue(200),false);
         assertEquals(player.checkBarricadeValue(300),false);
@@ -39,6 +41,7 @@ public class PlayerTest {
         tile.setGameObject(key);
         player.checkCollision(tile);
 
+        assertEquals(player.hasKey(), true);
         assertEquals(player.checkBarricadeValue(100),false);
         assertEquals(player.checkBarricadeValue(200),true);
         assertEquals(player.checkBarricadeValue(300),false);
@@ -53,6 +56,7 @@ public class PlayerTest {
         tile.setGameObject(key);
         player.checkCollision(tile);
 
+        assertEquals(player.hasKey(), true);
         assertEquals(player.checkBarricadeValue(100),false);
         assertEquals(player.checkBarricadeValue(200),false);
         assertEquals(player.checkBarricadeValue(300),true);
