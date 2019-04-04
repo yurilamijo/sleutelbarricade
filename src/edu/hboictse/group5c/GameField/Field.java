@@ -147,8 +147,11 @@ public class Field extends JPanel {
      */
     public void checkMove(int nextPos, String direction) {
         boolean checkNorthSouth = direction.equals("NORTH") || direction.equals("SOUTH");
+
+        this.player.setDirection(direction);
         if (!this.checkEdge(nextPos, direction)) {
             Block nextBlock = checkNorthSouth ? blocks[nextPos][player.getPosX()] : blocks[player.getPosY()][nextPos];
+
             if (player.checkPlayerOnEndField(nextBlock)) {
                 if (!level.checkFinalLevel()) {
                     level.nextLevel();

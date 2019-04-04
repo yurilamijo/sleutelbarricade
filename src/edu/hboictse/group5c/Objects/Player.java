@@ -16,6 +16,7 @@ import javax.swing.*;
 public class Player extends GameObject {
 
     private Key key;
+    private String direction;
 
     /**
      * Constructor of Player
@@ -25,8 +26,9 @@ public class Player extends GameObject {
      */
     public Player(int x, int y) {
         super(x, y);
+        this.direction = "EAST";
         //  Sets the image of the Player
-        super.setImage(new ImageIcon("Images/Player-R.png"));
+        this.setPlayerImage();
     }
 
     /**
@@ -106,5 +108,30 @@ public class Player extends GameObject {
      */
     public boolean hasKey() {
         return this.key != null;
+    }
+
+    public void setDirection(String direction){
+        this.direction = direction;
+        this.setPlayerImage();
+    }
+
+    private void setPlayerImage(){
+        switch (this.direction) {
+            case "NORTH":
+                super.setImage(new ImageIcon("Images/Player-B.png"));
+                break;
+            case "SOUTH":
+                super.setImage(new ImageIcon("Images/Player-F.png"));
+                break;
+            case "EAST":
+                super.setImage(new ImageIcon("Images/Player-R.png"));
+                break;
+            case "WEST":
+                super.setImage(new ImageIcon("Images/Player-L.png"));
+                break;
+            default:
+                System.out.println("Image is NULL -> ERROR !!!");
+                break;
+        }
     }
 }
