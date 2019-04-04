@@ -28,7 +28,7 @@ public class Field extends JPanel {
         this.player = new Player(0, 0);
         this.blocks = new Block[this.level.getBlocks().length][this.level.getBlocks().length];
 
-        buildLevel(levelNumber);
+        buildLevel(level.getLevelNumber());
         addBlocks();
         setLayout(new GridLayout(this.level.getBlocks().length, this.level.getBlocks().length));
     }
@@ -98,6 +98,8 @@ public class Field extends JPanel {
      * Adds Player to 2D Array
      */
     public void addPlayer(Player player) {
+        this.player.setPosX(player.getPosX());
+        this.player.setPosY(player.getPosY());
         this.blocks[player.getPosY()][player.getPosX()].setGameObject(player);
     }
 
@@ -143,17 +145,19 @@ public class Field extends JPanel {
      * @param nextPos   Integer with the next Y or X position
      * @param direction String of the direction of the Player
      */
-    private void checkMove(int nextPos, String direction) {
+    public void checkMove(int nextPos, String direction) {
         boolean checkNorthSouth = direction.equals("NORTH") || direction.equals("SOUTH");
-
         if (!this.checkEdge(nextPos, direction)) {
             Block nextBlock = checkNorthSouth ? blocks[nextPos][player.getPosX()] : blocks[player.getPosY()][nextPos];
-
-            if(player.checkPlayerOnEndField(nextBlock)){
-                level.nextLevel();
-                this.player = new Player(0,0);
-                this.buildLevel(level.getLevelNumber());
-                this.addBlocks();
+            if (player.checkPlayerOnEndField(nextBlock)) {
+                if (!level.checkFinalLevel()) {
+                    level.nextLevel();
+                    this.player = new Player(0, 0);
+                    this.buildLevel(level.getLevelNumber());
+                    this.addBlocks();
+                } else {
+                    JOptionPane.showMessageDialog(null, "YOU HAVE WON !!!");
+                }
             } else {
                 if (player.checkCollision(nextBlock)) {
                     if (checkNorthSouth) {
@@ -173,7 +177,7 @@ public class Field extends JPanel {
      * @param direction String of the direction of the Player
      * @return A boolean if player is on the edge
      */
-    private boolean checkEdge(int nextPos, String direction) {
+    public boolean checkEdge(int nextPos, String direction) {
         if (nextPos == -1 && direction.equals("NORTH") || nextPos == -1 && direction.equals("WEST") || nextPos >= blocks.length) {
             Game.setMessage("EDGE OF THE WORLD !!");
             return true;
