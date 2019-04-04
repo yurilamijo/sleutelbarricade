@@ -50,7 +50,7 @@ public class Field extends JPanel {
      * @param levelNumber Integer with the level Number
      */
     public void buildLevel(int levelNumber) {
-        if (this.blocks.length != this.level.getBlocks().length) {
+        if (this.blocks.length != this.level.getBlocks().length || this.blocks.length != this.level.getBlocks()[0].length) {
             this.setFieldLayout();
         }
 
@@ -225,6 +225,9 @@ public class Field extends JPanel {
         block.setIcon(new ImageIcon(image));
     }
 
+    /**
+     * Changes the field layout
+     */
     private void setFieldLayout() {
         this.blocks = new Block[this.level.getBlocks()[0].length][this.level.getBlocks().length];
         setLayout(new GridLayout(this.level.getBlocks()[0].length, this.level.getBlocks().length));
