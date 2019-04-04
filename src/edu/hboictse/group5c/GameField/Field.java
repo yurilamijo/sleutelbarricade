@@ -15,6 +15,7 @@ import java.awt.*;
 public class Field extends JPanel {
 
     private int levelNumber = 1;
+    private boolean reset = false;
 
     private Level level = new Level(levelNumber);
     private Player player;
@@ -50,11 +51,11 @@ public class Field extends JPanel {
      *
      * @param levelNumber Integer with the level Number
      */
-    private void buildLevel(int levelNumber) {
+    public void buildLevel(int levelNumber) {
         this.level = new Level(levelNumber);
-        for (int y = 0; y < level.getBlocks().length; y++) {
-            for (int x = 0; x < level.getBlocks()[y].length; x++) {
-                switch (level.getBlocks()[y][x]) {
+        for (int y = 0; y < this.level.getBlocks().length; y++) {
+            for (int x = 0; x < this.level.getBlocks()[y].length; x++) {
+                switch (this.level.getBlocks()[y][x]) {
                     case 0:
                         this.blocks[y][x] = new Tile(x, y);
                         break;
@@ -87,6 +88,7 @@ public class Field extends JPanel {
                         break;
                     case 9:
                         this.blocks[y][x] = new Tile(x, y);
+                        this.player = new Player(x, y);
                         addPlayer(this.player);
                         break;
                 }
@@ -98,8 +100,6 @@ public class Field extends JPanel {
      * Adds Player to 2D Array
      */
     public void addPlayer(Player player) {
-        this.player.setPosX(player.getPosX());
-        this.player.setPosY(player.getPosY());
         this.blocks[player.getPosY()][player.getPosX()].setGameObject(player);
     }
 
@@ -111,30 +111,30 @@ public class Field extends JPanel {
     public void movePlayer(String direction) {
         final int speed = 1;
         int nextPos;
-        int oldPosX = player.getPosX();
-        int oldPosY = player.getPosY();
+        int oldPosX = this.player.getPosX();
+        int oldPosY = this.player.getPosY();
 
         switch (direction) {
             case "NORTH":
-                nextPos = player.getPosY() - speed;
+                nextPos = this.player.getPosY() - speed;
                 this.checkMove(nextPos, direction);
                 break;
             case "SOUTH":
-                nextPos = player.getPosY() + speed;
+                nextPos = this.player.getPosY() + speed;
                 this.checkMove(nextPos, direction);
                 break;
             case "EAST":
-                nextPos = player.getPosX() + speed;
+                nextPos = this.player.getPosX() + speed;
                 this.checkMove(nextPos, direction);
                 break;
             case "WEST":
-                nextPos = player.getPosX() - speed;
+                nextPos = this.player.getPosX() - speed;
                 this.checkMove(nextPos, direction);
                 break;
         }
 
         this.blocks[oldPosY][oldPosX] = new Tile(oldPosX, oldPosY);
-        this.addPlayer(player);
+        this.addPlayer(this.player);
 
         this.updateField();
     }
@@ -192,9 +192,11 @@ public class Field extends JPanel {
     /**
      * Updates the field
      */
-    private void updateField() {
+    public void updateField() {
         this.removeAll();
+
         this.addBlocks();
+
         this.revalidate();
         this.repaint();
     }
@@ -221,7 +223,21 @@ public class Field extends JPanel {
         block.setIcon(new ImageIcon(image));
     }
 
+    public void reset() {
+        this.removeAll();
+
+        this.buildLevel(this.level.getLevelNumber());
+        this.addBlocks();
+
+        this.revalidate();
+        this.repaint();
+    }
+
     public Block[][] getBlocks() {
-        return blocks;
+        return this.blocks;
+    }
+
+    public Level getLevel() {
+        return this.level;
     }
 }

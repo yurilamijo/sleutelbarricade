@@ -19,6 +19,7 @@ public class Game extends JFrame implements KeyListener {
     private static JPanel mainPanel = new JPanel();
     private static OptionPanel optionPanel = new OptionPanel();
     private static Field field = new Field();
+    private static Game game = new Game();
 
     public Game() {
         super.setMinimumSize(new Dimension(900, 730));
@@ -32,11 +33,7 @@ public class Game extends JFrame implements KeyListener {
     }
 
     public static void main(String[] args) {
-        Game game = new Game();
-        game.requestFocus();
-        game.requestFocusInWindow();
-        game.setFocusable(true);
-        game.addKeyListener(game);
+        setListener();
     }
 
     private static void createComponents() {
@@ -74,10 +71,44 @@ public class Game extends JFrame implements KeyListener {
     }
 
     /**
+     * Removes and adds KeyListener
+     */
+    public static void setListener(){
+        game.removeKeyListener(game);
+        game.requestFocus();
+        game.requestFocusInWindow();
+        game.setFocusable(true);
+        game.addKeyListener(game);
+    }
+
+    /**
      *
      * @param msg String with the message
      */
     public static void setMessage(String msg){
         optionPanel.setMessage(msg);
+    }
+
+    /**
+     * Sets the next level if button is pressed
+     */
+    public static void nextLevel(){
+        field.removeAll();
+
+        field.getLevel().nextLevel();
+        field.buildLevel(field.getLevel().getLevelNumber());
+        field.addBlocks();
+
+        field.revalidate();
+        field.repaint();
+        setListener();
+    }
+
+    /**
+     * Resets the next level if button is pressed
+     */
+    public static void reset(){
+        field.reset();
+        setListener();
     }
 }

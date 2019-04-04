@@ -1,9 +1,10 @@
 package edu.hboictse.group5c.GameField;
 
+import edu.hboictse.group5c.Game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Class of OptionsPanel
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
  * @author Alexsandy Richardson
  * @version 0.1
  */
-public class OptionPanel extends JPanel implements ActionListener {
+public class OptionPanel extends JPanel {
 
     private JPanel option;
     private JPanel mainPanel;
@@ -54,20 +55,19 @@ public class OptionPanel extends JPanel implements ActionListener {
      */
     private void createOption() {
         this.option = new JPanel(new BorderLayout());
-//        option.setLayout(new GridLayout(2,2,20,50));
         JButton reset = new JButton("Reset");
         JButton nextLevel = new JButton("Next Level");
 
-        reset.addActionListener(this);
-        nextLevel.addActionListener(this);
+        reset.addActionListener((ActionEvent e) -> {
+            Game.reset();
+        });
+
+        nextLevel.addActionListener((ActionEvent e) -> {
+            Game.nextLevel();
+        });
 
         this.option.add(reset, BorderLayout.WEST);
         this.option.add(nextLevel, BorderLayout.EAST);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        System.out.println("You clicked: ");
     }
 }
 
