@@ -223,6 +223,9 @@ public class Field extends JPanel {
         block.setIcon(new ImageIcon(image));
     }
 
+    /**
+     * Resets the current Field
+     */
     public void reset() {
         this.removeAll();
 
@@ -237,6 +240,10 @@ public class Field extends JPanel {
         return this.blocks;
     }
 
+    /**
+     * Returns the level
+     * @return Level Object
+     */
     public Level getLevel() {
         return this.level;
     }
