@@ -93,14 +93,7 @@ public class Game extends JFrame implements KeyListener {
      * Sets the next level if button is pressed
      */
     public static void nextLevel(){
-        field.removeAll();
-
-        field.getLevel().nextLevel();
-        field.buildLevel(field.getLevel().getLevelNumber());
-        field.addBlocks();
-
-        field.revalidate();
-        field.repaint();
+        field.updateField("NEXT_LEVEL");
         setListener();
     }
 
@@ -108,7 +101,7 @@ public class Game extends JFrame implements KeyListener {
      * Resets the next level if button is pressed
      */
     public static void reset(){
-        field.reset();
+        field.updateField("RESET");
         setListener();
     }
 }

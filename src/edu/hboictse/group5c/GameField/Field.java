@@ -135,7 +135,7 @@ public class Field extends JPanel {
         this.blocks[oldPosY][oldPosX] = new Tile(oldPosX, oldPosY);
         this.addPlayer(this.player);
 
-        this.updateField();
+        this.updateField("UPDATE");
     }
 
     /**
@@ -154,7 +154,6 @@ public class Field extends JPanel {
             if (player.checkPlayerOnEndField(nextBlock)) {
                 if (!level.checkFinalLevel()) {
                     level.nextLevel();
-                    this.player = new Player(0, 0);
                     this.buildLevel(level.getLevelNumber());
                     this.addBlocks();
                 } else {
@@ -191,11 +190,11 @@ public class Field extends JPanel {
     /**
      * Updates the field
      */
-    public void updateField() {
+    public void updateField(String type) {
         this.removeAll();
-
+        if (type.equals("NEXT_LEVEL")) this.level.nextLevel();
+        if (!type.equals("UPDATE")) this.buildLevel(this.level.getLevelNumber());
         this.addBlocks();
-
         this.revalidate();
         this.repaint();
     }
@@ -222,25 +221,13 @@ public class Field extends JPanel {
         block.setIcon(new ImageIcon(image));
     }
 
-    /**
-     * Resets the current Field
-     */
-    public void reset() {
-        this.removeAll();
-
-        this.buildLevel(this.level.getLevelNumber());
-        this.addBlocks();
-
-        this.revalidate();
-        this.repaint();
-    }
-
     public Block[][] getBlocks() {
         return this.blocks;
     }
 
     /**
      * Returns the level
+     *
      * @return Level Object
      */
     public Level getLevel() {
