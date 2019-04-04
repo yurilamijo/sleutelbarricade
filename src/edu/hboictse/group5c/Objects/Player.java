@@ -26,7 +26,7 @@ public class Player extends GameObject {
     public Player(int x, int y) {
         super(x, y);
         //  Sets the image of the Player
-        super.setImage(new ImageIcon("Images/Player.png"));
+        super.setImage(new ImageIcon("Images/Player-R.png"));
     }
 
     /**

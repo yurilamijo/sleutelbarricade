@@ -55,6 +55,7 @@ public class Game extends JFrame implements KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
             field.movePlayer("NORTH");
+
         }
         if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
             field.movePlayer("SOUTH");
