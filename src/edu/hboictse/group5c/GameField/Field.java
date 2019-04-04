@@ -15,7 +15,6 @@ import java.awt.*;
 public class Field extends JPanel {
 
     private int levelNumber = 1;
-    private boolean reset = false;
 
     private Level level = new Level(levelNumber);
     private Player player;
