@@ -4,6 +4,7 @@
 
 # IntelliJ project files
 .idea
+.idea/workspace.xml
 *.iml
 out
 gen### Java template
@@ -58,3 +59,4 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+.idea/workspace.xml
